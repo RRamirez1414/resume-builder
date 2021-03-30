@@ -1,0 +1,22 @@
+{
+  "name": "resume-builder",
+  "version": "1.0.0",
+  "description": "web application that takes form input and outputs a website link/files template ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RRamirez1414/resume-builder.git"
+  },
+  "author": "Ramon, Raven, Hecmar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RRamirez1414/resume-builder/issues"
+  },
+  "homepage": "https://github.com/RRamirez1414/resume-builder#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
