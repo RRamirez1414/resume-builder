@@ -20,8 +20,18 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    } //collection tag makes collection in DB names 'user'
+    //timestamps tag adds createdAt and updatedAt fields to schema
 }, { collection: 'user', timestamps: true})
+
+/*
+    The following functions were taken from a website detailing how to has
+    a password and check that password when someone is loging in. For more
+    information on how to implement the second method and find out if the
+    password inputted by the user is the one in the database
+
+    https://coderrocketfuel.com/article/store-passwords-in-mongodb-with-node-js-mongoose-and-bcrypt
+*/
 
 //function that hashes the password before being saved to the database collection
 userSchema.pre("save", function (next) {
