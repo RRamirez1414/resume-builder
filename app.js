@@ -1,12 +1,25 @@
 const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 //initialization and middleware
 const app = express()
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: 'true' }))
+
+//mongoose database connection
+const uri = "mongodb+srv://admin:ILOyL5Wzxs7UbdDk@webdev.2jqbv.mongodb.net/test?retryWrites=true&w=majority";
+try {
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+} catch (error) {
+    handleError(error);
+}
+
+const db = mongoose.connection
+db.on('error', error => console.error(error));
+db.once('open', () => console.log("Connected to Mongoose"));
 
 app.get("/", (req, res) => {
     res.render('home')
