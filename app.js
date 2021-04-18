@@ -35,9 +35,6 @@ db.once("open", () => console.log("Connected to Mongoose"))
 app.use('/', homeRouter)
 app.use('/user', userRouter)
 
-
-
-
 //create test users
 // const NewUser = new User({
 //     firstName: "Hecmar",

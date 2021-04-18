@@ -1,4 +1,29 @@
 <%- include('../partials/header.ejs') %>
-    <h1>Form Page</h1>
-    <!--Form element here, must be of type 'post'-->
-    <%- include('../partials/footer.ejs') %>
+<h1>Form Page</h1>
+<h3>Create New Web Page</h3>
+<div class="form-group">
+  <form action="/new-form" method="POST">
+    <div>
+      <!--classes such as form-control are styles from bootstrap-->
+      <label for="webTitle">Website Title</label>
+      <input
+        class="form-control input-lg"
+        type="text"
+        name="webTitle"
+        id="webTitle"
+        required
+      />
+      <label for="personalBio">Short Bio</label>
+      <textarea
+        class="form-control input-sm"
+        type="text"
+        name="personalBio"
+        id="personalBio"
+        rows="5"
+        required
+      ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+<%- include('../partials/footer.ejs') %>
