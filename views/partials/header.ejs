@@ -16,12 +16,29 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../../public/styles.css"/>
   </head>
 
-  <body>
-    <!--Temporary 'nav bar', please place navbar element here, 
-    any ejs file that includes this file will have the navbar -->
-    <h1>Nav Bar</h1>
+  <style>
+    .head-box{
+      background-color: #9FEDD7;
+      color: #026670;
+      border: 3px solid #026670;
+      text-shadow: 3px 3px #d8d2c7;
+    }
+
+    .head-box-el{ 
+        height: 100%;
+        width: 100%;
+    }
+  </style>
+
+  <body background="background.png">
+    <div class="d-flex container-fluid row w-100 head-box mt-3">
+      <div class="mr-auto"><h3><b>Web-Res</b>  - Online Resume Builder</h3></div>
+      <div class=""><h3 class="head-box-el">Edit Resume</h3></div>
+      <div class=" offset-1"><h3 class="head-box-el">See Resume</h3></div>
+    </div>
+    
   </body>
 </html>
