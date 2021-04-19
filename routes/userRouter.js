@@ -5,15 +5,14 @@ const User = require("../models/user");
 //later, will be dynamically filled upon successful login
 const loggedUser = {
   username: "ramirez.ramon",
+  bio: "",
 };
 
 router.get("/new-form", (req, res) => {
-  res.render("user/new-form");
+  res.render("user/new-website-form");
 });
 
-//RR: create a get request to handle user id as a url paramater
-//this link is the user's website
-router.get("/:username", (req, res) => {
+router.get("/page/:username", (req, res) => {
   const username = req.params.username;
   User.findOne(
     {
@@ -26,9 +25,11 @@ router.get("/:username", (req, res) => {
     (err, foundUser) => {
       if (!err) {
         firstName = foundUser.firstName;
+        console.log(firstName);
         //render the user's website through ejs
         res.render("user/user-website", {
           firstName: firstName,
+          bio: loggedUser.bio,
         });
       } else {
         //alert the user the website has not been found
@@ -38,13 +39,17 @@ router.get("/:username", (req, res) => {
   );
 });
 
-router.post("/new-form", (req, res) => {
+router.post("/create-website", (req, res) => {
   //RR:
   //handle form data from url body info, store to DB
   //render new link with user id or username from DB as a path
-  //for later, also store link to a collection of websites to DB tied to the user
+  //for later, also store link to a collection of website links to DB tied to the user
+  loggedUser.bio = req.body.personalBio;
+
   console.log("post successful");
-  //res.redirect("/user/" + loggedUser.username);
+
+  //? app claims cannot read property of first name on database of null but still loads the document anyway?
+  res.redirect("/user/page/" + loggedUser.username);
 });
 
 module.exports = router;
