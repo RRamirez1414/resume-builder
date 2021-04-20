@@ -1,39 +1,65 @@
-.head-box{
-    background-color: #FEF9C7;
-    color: #026670;
-    border: 3px solid #FCE181;
-    text-shadow: 3px 3px #d8d2c7;
-  }
+.head-box {
+  background-color: #9fedd7;
+  color: #026670;
+  border: 3px solid #026670;
+  text-shadow: 3px 3px #d8d2c7;
+}
 
-  .head-box-el{ 
-      height: 100%;
-      width: 100%;
-  }
+.head-box-el {
+  height: 100%;
+  width: 100%;
+}
 
-  body {
-    color: #026670;
+body {
+  color: #026670;
 }
 
 .headers {
-    padding: 5px;
-    text-shadow: 3px 3px #d8d2c7;
-    color: #026670;
+  padding: 5px;
+  text-shadow: 3px 3px #d8d2c7;
+  color: #026670;
 }
 
-a.start-btn{
-
-    background-color:#9FEDD7;
-    color: #026670;
-    text-decoration: none;
-    padding: 10px;
-    border: 3px solid #026670;
-    border-radius: 200px;
-    font-size: 36px;
-    width: 320px;
-    text-align: center;
+a.start-btn {
+  background-color: #9fedd7;
+  color: #026670;
+  text-decoration: none;
+  padding: 10px;
+  border: 3px solid #026670;
+  border-radius: 200px;
+  font-size: 36px;
+  width: 320px;
+  text-align: center;
 }
 
 .sep {
-    border: 2px solid #026670;
-    width: 75%
+  border: 2px solid #026670;
+  width: 75%;
+}
+
+body {
+  color: #026670;
+}
+
+.headers {
+  padding: 5px;
+  text-shadow: 3px 3px #d8d2c7;
+  color: #026670;
+}
+
+a.start-btn {
+  background-color: #9fedd7;
+  color: #026670;
+  text-decoration: none;
+  padding: 10px;
+  border: 3px solid #026670;
+  border-radius: 200px;
+  font-size: 36px;
+  width: 320px;
+  text-align: center;
+}
+
+.sep {
+  border: 2px solid #026670;
+  width: 75%;
 }
