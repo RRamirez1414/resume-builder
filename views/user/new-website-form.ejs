@@ -1,33 +1,41 @@
 <%- include('../partials/header.ejs') %>
 
 
-<div class="flex-column mt-5">
+<div class="flex-column mt-3">
   <div class="d-flex justify-content-center"><h1 class="headers user">Form Page</h1></div>
   <div class="d-flex justify-content-center"><h3 class="headers">Create New Web Page</h3></div>
   <hr class="sep">
 </div>
 
-<div class="container-fluid mt-5 w-75 interface-design p-4">
+<div class="container-fluid mt-3 w-75 interface-design p-4">
   <form action="/user/create-website" method="POST">
     <div>
       <!--classes such as form-control are styles from bootstrap-->
-      <label for="webTitle">Website Title</label>
-      <input
-        class="form-control input-lg"
-        type="text"
-        name="webTitle"
-        id="webTitle"
-        required
-      />
-      <label for="personalBio">Short Bio</label>
-      <textarea
-        class="form-control input-sm"
-        type="text"
-        name="personalBio"
-        id="personalBio"
-        rows="5"
-        required
-      ></textarea>
+      <div class="mb-3">
+        <label for="webTitle">Website Title:</label>
+        <input
+          class="form-control input-lg"
+          type="text"
+          name="webTitle"
+          id="webTitle"
+          placeholder="title..."
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="personalBio">Short Bio:</label>
+        <textarea
+          class="form-control input-sm"
+          type="text"
+          name="personalBio"
+          id="personalBio"
+          placeholder="biography...."
+          rows="5"
+          required
+        ></textarea>
+      </div>
+
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
   </form>

@@ -11,6 +11,16 @@ footer {
     width: 100%;
 }
 
+label {
+    color: rgba(100,100,100,0.7);
+    font-size:24px;
+}
+
+input {
+    background-color: rgba(50,50,50);
+    color: white;
+}
+
 /******* CLASS SELECTORS *******/
 .head-box{
     background-color: #A9A9A9;
