@@ -25,7 +25,6 @@ router.get("/page/:username", (req, res) => {
     (err, foundUser) => {
       if (!err) {
         firstName = foundUser.firstName;
-        console.log(firstName);
         //render the user's website through ejs
         res.render("user/user-website", {
           firstName: firstName,
@@ -45,8 +44,6 @@ router.post("/create-website", (req, res) => {
   //render new link with user id or username from DB as a path
   //for later, also store link to a collection of website links to DB tied to the user
   loggedUser.bio = req.body.personalBio;
-
-  console.log("post successful");
 
   //? app claims cannot read property of first name on database of null but still loads the document anyway?
   res.redirect("/user/page/" + loggedUser.username);
