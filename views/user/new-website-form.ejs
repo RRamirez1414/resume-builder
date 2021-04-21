@@ -1,7 +1,13 @@
 <%- include('../partials/header.ejs') %>
-<h1>Form Page</h1>
-<h3>Create New Web Page</h3>
-<div class="form-group">
+
+
+<div class="flex-column mt-5">
+  <div class="d-flex justify-content-center"><h1 class="headers user">Form Page</h1></div>
+  <div class="d-flex justify-content-center"><h3 class="headers">Create New Web Page</h3></div>
+  <hr class="sep">
+</div>
+
+<div class="container-fluid mt-5 w-75 interface-design p-4">
   <form action="/user/create-website" method="POST">
     <div>
       <!--classes such as form-control are styles from bootstrap-->
@@ -26,4 +32,6 @@
     <button class="btn btn-primary" type="submit">Submit</button>
   </form>
 </div>
+
+
 <%- include('../partials/footer.ejs') %>
