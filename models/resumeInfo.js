@@ -46,14 +46,6 @@ const resumeInfoSchema = new mongoose.Schema({
     },
     skills: { //skills will be a comma separated list that will parsed on the webpage to be a list
         type: String
-    },
-    education: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Education'
-    },
-    experience: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Experience'
     }
 }, { collection: 'resumeInfo', timestamps: true})
 

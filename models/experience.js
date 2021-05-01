@@ -11,6 +11,9 @@ const experienceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    deptName: {
+        type: String,
+    },
     title: { // work title
         type: String,
         required: true,

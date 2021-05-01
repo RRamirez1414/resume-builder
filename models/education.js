@@ -11,7 +11,7 @@ const educationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    acheived: { // level of education BA, MA, DR, HS
+    achieved: { // level of education BA, MA, DR, HS
         type: String,
         required: true,
         maxlength: 2
@@ -20,21 +20,13 @@ const educationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    fromMonth: {
-        type: String,
-        required: true,
-    },
-    fromYear: {
+    gradYear: { //if graduated is N put expected on webpage
         type: Number,
         required: true,
     },
-    toMonth: {
+    graduated: { // Y or N
         type: String,
-        required: true,
-    },
-    toYear: {
-        type: Number,
-        required: true,
+        maxlength: 1,
     },
     city: {
         type: String,
