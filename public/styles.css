@@ -81,7 +81,6 @@ a.start-btn{
     border-bottom: 3px solid rgba(100,100,100,0.4);
 }
 
-
 /******* TAG SELECTORS *******/ 
 body {
     color: #026670;
@@ -177,6 +176,10 @@ footer {
 .head-box-el {
     height: 100%;
     width: 100%;
+}
+
+.button-container {
+    text-align: center;
 }
 
 /******* ID SELECTORS *******/
