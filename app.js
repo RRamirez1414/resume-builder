@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 const homeRouter = require("./routes/homeRouter.js");
 const userRouter = require("./routes/userRouter.js");
+const loginRouter = require("./routes/loginRouter.js")
 const resumeInfo = require("./models/resumeInfo");
 const education = require("./models/education");
 const experience = require("./models/experience");
@@ -34,9 +35,13 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Mongoose"));
 
-app.use("/", homeRouter);
 app.use("/user", userRouter);
+app.use("/login", loginRouter);
 
+
+app.get("/", (req, res) => {
+  res.redirect("/login")
+});
 //create test users
 // const NewUser = new User({
 //     firstName: "Hecmar",

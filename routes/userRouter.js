@@ -3,12 +3,24 @@ const router = express.Router();
 const User = require("../models/user");
 
 //later, will be dynamically filled upon successful login
-const loggedUser = {
-  username: "ramirez.ramon",
-  bio: "",
-};
+let loggedUser = {};
 
-router.get("/new-form", (req, res) => {
+router.get("/:username", (req, res) => {
+  const username = req.params.username
+  User.findOne({username: username}, (error, foundUser) => {
+    if(!error) {
+      loggedUser = foundUser
+      console.log(loggedUser);
+      res.render("home/home", {
+        username: loggedUser.username,
+        fname: loggedUser.firstName
+      })
+    }
+  })
+})
+
+//'host/user/new-form'
+router.get("/:username/new-form", (req, res) => {
   res.render("user/new-website-form");
 });
 
@@ -20,12 +32,11 @@ router.get("/page/:username", (req, res) => {
        * later, do another get request to handle multiple websites of the same user
        * something like /:username/:website-title
        */
-      username: username,
+      username: loggedUser.username,
     },
     (err, foundUser) => {
       if (!err) {
         firstName = foundUser.firstName;
-        console.log(firstName);
         //render the user's website through ejs
         res.render("user/user-website", {
           firstName: firstName,
