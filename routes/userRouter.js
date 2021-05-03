@@ -57,8 +57,6 @@ router.post("/create-website", (req, res) => {
   //for later, also store link to a collection of website links to DB tied to the user
   loggedUser.bio = req.body.personalBio;
 
-  console.log("post successful");
-
   //? app claims cannot read property of first name on database of null but still loads the document anyway?
   res.redirect("/user/page/" + loggedUser.username);
 });
