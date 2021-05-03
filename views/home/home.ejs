@@ -1,16 +1,14 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="container-fluid mt-5">
-  <div>
-    <div class="d-flex justify-content-center">
-      <h1 class="headers">Welcome!</h1>
+<div class="container-fluid mt-5 w-75 interface-design">
+    <div>
+        <div class="d-flex justify-content-center"><h1 class="headers">Welcome, <%= fname %>! </h1></div>
+        <hr class="sep">
+        <div class="d-flex justify-content-center my-5 w-100"><a href="<%= username %>/new-form" class="start-btn">Get Started!</a></div>
+        <div class=""><button class="header-btn"><h3 class="head-box-el">Edit Resume</h3></button></div>
+    <div class=" offset-1"><button class="header-btn"><h3 class="head-box-el">See Resume</h3></button></div>
     </div>
-    <hr class="sep" />
-    <div class="d-flex justify-content-center my-5 w-100">
-      <a href="user/new-form" class="start-btn">Get Started!</a>
-    </div>
-  </div>
-
-  <%- include("../partials/footer.ejs") %>
 </div>
+
+<%- include("../partials/footer.ejs") %>
 

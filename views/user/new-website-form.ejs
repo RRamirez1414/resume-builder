@@ -1,29 +1,110 @@
 <%- include('../partials/header.ejs') %>
-<h1>Form Page</h1>
-<h3>Create New Web Page</h3>
-<div class="container-fluid mt-5 w-75 interfacer-design">
+<script src="/public/new-website-form.js" type="text-javascript"></script>
+
+<div class="flex-column mt-3">
+  <div class="d-flex justify-content-center"><h1 class="headers user">Resume Form Page</h1></div>
+  <div class="d-flex justify-content-center"><h3 class="headers">Create New Web Page</h3></div>
+  <hr class="sep">
+</div>
+
+<div class="container-fluid mt-3 w-75 interface-design p-4">
   <form action="/user/create-website" method="POST">
-    <div>
+    <div class="row">
       <!--classes such as form-control are styles from bootstrap-->
-      <label for="webTitle">Website Title</label>
-      <input
-        class="form-control input-lg"
-        type="text"
-        name="webTitle"
-        id="webTitle"
-        required
-      />
-      <label for="personalBio">Short Bio</label>
-      <textarea
-        class="form-control input-sm"
-        type="text"
-        name="personalBio"
-        id="personalBio"
-        rows="5"
-        required
-      ></textarea>
+      <div class="col-12 mb-3">
+        <label for="siteTitle">Website Title:</label>
+        <input
+          class="form-control input-lg input-style"
+          type="text"
+          name="siteTitle"
+          id="siteTitle"
+          placeholder="title..."
+          required
+        />
+      </div>
+      <div class="col-6 mb-3">
+        <label for="address">Address: </label>
+        <input class="form-control input-lg input-style" type="text" name="address" id="address" placeholder="address..">
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="phone1Type">Phone 1: </label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <select name="phone1Type" id="phone1Type" class="form-control input-style">
+              <option value="">Type</option>
+              <option value="Cell">Cell</option>
+              <option value="Mobile">Mobile</option>
+              <option value="Home">Home</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <input class="form-control input-lg input-style" type="text" name="phone1" id="phone1" placeholder="phone 1...">
+        </div> 
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="phone2Type">Phone 2: </label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <select name="phone2Type" id="phone2Type" class="form-control input-style">
+              <option value="">Type</option>
+              <option value="Cell">Cell</option>
+              <option value="Mobile">Mobile</option>
+              <option value="Home">Home</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <input class="form-control input-lg input-style" type="text" name="phone2" id="phone2" placeholder="phone 2...">
+        </div> 
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="email1">Email 1:</label>
+        <input type="text" class="form-control input-lg input-style" name="email1" id="email1" placeholder="email 1...">
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="email2">Email 2:</label>
+        <input type="text" class="form-control input-lg input-style" name="email2" id="email2" placeholder="email 2...">
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="link1">Personal Link 1:</label>
+        <input type="text" class="form-control input-lg input-style" name="link1" id="link1" placeholder="link 1...">
+      </div>
+
+      <div class="col-3 mb-3">
+        <label for="link2">Peronsal Link 2:</label>
+        <input type="text" class="form-control input-lg input-style" name="link2" id="link2" placeholder="link 2...">
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="profSum">Professional Summary:</label></label>
+        <textarea
+          class="form-control input-sm input-style"
+          type="text"
+          name="profSum"
+          id="profSum"
+          placeholder="biography...."
+          rows="5"
+          required
+        ></textarea>
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="" multiple="multiple">Skills</label>
+        <select name="" id="skills" >
+          <option value="" selected disabled>Add Skills...</option>
+        </select>
+      </div>
+
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    
+    <div class="">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
   </form>
 </div>
-<%- include('../partials/footer.ejs') %>
+
+<!-- <%- include('../partials/footer.ejs') %> -->
