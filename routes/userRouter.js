@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
-//later, will be dynamically filled upon successful login
 let loggedUser = {};
 
 router.get("/:username", (req, res) => {
@@ -10,7 +9,6 @@ router.get("/:username", (req, res) => {
   User.findOne({username: username}, (error, foundUser) => {
     if(!error) {
       loggedUser = foundUser
-      console.log(loggedUser);
       res.render("home/home", {
         username: loggedUser.username,
         fname: loggedUser.firstName
