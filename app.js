@@ -40,7 +40,8 @@ app.use("/login", loginRouter);
 
 
 app.get("/", (req, res) => {
-  res.redirect("/login")
+  // res.redirect("/login")
+  res.send("Hello World")
 });
 //create test users
 // const NewUser = new User({
