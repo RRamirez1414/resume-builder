@@ -40,8 +40,7 @@ app.use("/login", loginRouter);
 
 
 app.get("/", (req, res) => {
-  // res.redirect("/login")
-  res.send("Hello World")
+  res.redirect("/login")
 });
 //create test users
 // const NewUser = new User({
@@ -105,6 +104,6 @@ app.get("/", (req, res) => {
 // console.log(NewExperience);
 // NewExperience.save();
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started on port");
 });
