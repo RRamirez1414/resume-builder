@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     res.render("login/login");
   });
 
-//check login, redirect to home if successful, redirect to login failed route otherwise
+//check login or signup, handle inputs and redirect accordingly
 router.post('/', (req, res) => {
     console.log(req.body)
 
