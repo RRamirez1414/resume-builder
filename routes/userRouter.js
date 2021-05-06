@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const States = require("../models/states");
+const Months = require("../models/months");
 
 let loggedUser = {};
 
@@ -18,8 +20,10 @@ router.get("/:username", (req, res) => {
 })
 
 //'host/user/new-form'
-router.get("/:username/new-form", (req, res) => {
-  res.render("user/new-website-form");
+router.get("/:username/new-form", async (req, res) => {
+  let states = await States.find({});
+  let months = await Months.find({});
+  res.render("user/new-website-form", {states: states, months: months});
 });
 
 router.get("/page/:username", (req, res) => {
