@@ -28,6 +28,15 @@ label {
     text-shadow: 3px 3px #d8d2c7;
 }
 
+.head-box a{
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit;
+}
+
+.resume-add-btn{
+    padding: 1px 6px 1px 6px;
+}
+
 .header-btn {
     background-color:#CAEBF2;
     color: black;
