@@ -1,0 +1,8 @@
+<%- include("../partials/header.ejs") %> 
+
+<h1>Resume List</h1>
+<% resumeList.forEach(resume => { %>
+    <h3><%= resume.siteTitle %></h3>  
+<% }); %> 
+
+<%- include("../partials/footer.ejs") %>

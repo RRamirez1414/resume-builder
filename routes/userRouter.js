@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
+const ResumeInfo = require("../models/resumeInfo")
 const States = require("../models/states");
 const Months = require("../models/months");
 
@@ -26,6 +27,14 @@ router.get("/:username/new-form", async (req, res) => {
   res.render("user/new-website-form", {states: states, months: months});
 });
 
+//"host/user/:username/"
+router.get("/:username/view-list", async (req, res) => {
+  let resumeList = await ResumeInfo.find({user: loggedUser._id})
+  res.render("home/viewResumeList", {resumeList: resumeList} );
+})
+
+
+//generated website end point
 router.get("/page/:username", (req, res) => {
   const username = req.params.username;
   User.findOne(

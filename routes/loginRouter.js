@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
 
 //check login or signup, handle inputs and redirect accordingly
 router.post('/', (req, res) => {
-    console.log(req.body)
 
     //check which button was clicked
     if(req.body.submitButton === "login") {
