@@ -20,7 +20,8 @@ label {
 .head-box {
   background-color: rgba(100, 178, 255, 0.4);
   color: #0066cb;
-  border: 3px solid #0066cb;
+  border-bottom: 3px solid #0066cb;
+  border-right: 3px solid #0066cb;
   text-shadow: 3px 3px #d8d2c7;
 }
 
