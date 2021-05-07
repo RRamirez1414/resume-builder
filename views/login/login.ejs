@@ -1,42 +1,102 @@
 <%- include('../partials/header.ejs') %>
 
 <div class="log-sign">
-    <div class="container-fluid mt-5 w-25 interfacer-design">
-        <div class="d-flex justify-content-center"><h1 class="headers">Log-in</h1></div>
-        <form method="POST" action="/login">
-            <div class="login-prompt">
-                <label for="loginUsername">Username:</label>
-                <input class="float-right" type="text" name="loginUsername" id="login-username" placeholder="username..." required />
-            </div>
-            <div class="login-prompt">
-                <label for="login-password">Password:</label>
-                <input class="float-right" type="password" name="loginPassword" id="login-Password" placeholder="password..." required/>
-            </div>
-            <button type="submit" class="btn btn-dark" name="submitButton" value="login">Login</button>
-        </form>
+  <div class="container-fluid mt-5 w-25 interfacer-design">
+    <div class="d-flex justify-content-center">
+      <h1 class="headers">Log-in</h1>
     </div>
-    <div class="container-fluid mt-5 w-25 interfacer-design">
-        <div class="d-flex justify-content-center"><h1 class="headers">Sign-up</h1></div>
-        <form method="POST" action="/login">
-            <div class="login-prompt">
-                <label for="signup-firstname">First Name:</label>
-                <input class="float-right" type="text" name="signupFirstname" id="signup-firstname" placeholder="first name..." required/>
-            </div>
-            <div class="login-prompt">
-                <label for="signup-lastname">Last Name:</label>
-                <input class="float-right" type="text" name="signupLastname" id="signup-lastname" placeholder="last name..." required/>
-            </div>
-            <div class="login-prompt">
-                <label for="signup-username">Username:</label>
-                <input class="float-right" type="text" name="signupUsername" id="signup-username" placeholder="username..." required/>
-            </div>
-            <div class="login-prompt">
-                <label for="signup-password">Password:</label>
-                <input class="float-right" type="password" name="signupPassword" id="signup-Password" placeholder="password..." required/>
-            </div>
-            <button type="submit" class="btn btn-dark" name="submitButton" value="signup">Sign Up</button>
-        </form>
+    <form method="POST" action="/login">
+      <div class="login-prompt">
+        <label for="loginUsername">Username:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="loginUsername"
+          id="login-username"
+          placeholder="username..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="login-password">Password:</label>
+        <input
+          class="float-right"
+          type="password"
+          name="loginPassword"
+          id="login-Password"
+          placeholder="password..."
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-dark"
+        name="submitButton"
+        value="login"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+  <div class="container-fluid mt-5 w-25 interfacer-design">
+    <div class="d-flex justify-content-center">
+      <h1 class="headers">Sign-up</h1>
     </div>
+    <form method="POST" action="/login">
+      <div class="login-prompt">
+        <label for="signup-firstname">First Name:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupFirstname"
+          id="signup-firstname"
+          placeholder="first name..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-lastname">Last Name:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupLastname"
+          id="signup-lastname"
+          placeholder="last name..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-username">Username:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupUsername"
+          id="signup-username"
+          placeholder="username..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-password">Password:</label>
+        <input
+          class="float-right"
+          type="password"
+          name="signupPassword"
+          id="signup-Password"
+          placeholder="password..."
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-dark"
+        name="submitButton"
+        value="signup"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
 </div>
 
 <%- include("../partials/footer.ejs") %>

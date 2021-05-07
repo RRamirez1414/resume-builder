@@ -1,6 +1,6 @@
 /******* TAG SELECTORS *******/
 body {
-  color: #026670;
+  color: #0066cb;
 }
 
 footer {
@@ -17,24 +17,11 @@ label {
 }
 
 /******* CLASS SELECTORS *******/
-.float-right {
-  float: right;
-}
-
 .head-box {
-  background-color: #9fedd7;
-  color: #026670;
-  border: 3px solid #026670;
+  background-color: rgba(100, 178, 255, 0.4);
+  color: #0066cb;
+  border: 3px solid #0066cb;
   text-shadow: 3px 3px #d8d2c7;
-}
-
-.head-box a {
-  color: inherit; /* blue colors for links too */
-  text-decoration: inherit;
-}
-
-.resume-add-btn {
-  padding: 1px 6px 1px 6px;
 }
 
 .header-btn {
@@ -55,24 +42,19 @@ label {
 .headers {
   padding: 5px;
   text-shadow: 3px 3px #d8d2c7;
-  color: #026670;
+  color: #0066cb;
 }
 
 a.start-btn {
-  background-color: #9fedd7;
-  color: #026670;
+  background-color: #caebf2;
+  color: black;
   text-decoration: none;
   padding: 10px;
-  border: 3px solid #026670;
+  border: 3px solid #a9a9a9;
   border-radius: 200px;
   font-size: 36px;
   width: 320px;
   text-align: center;
-}
-
-.sep {
-  border: 2px solid #026670;
-  width: 75%;
 }
 
 .interface-design {
@@ -91,6 +73,11 @@ a.start-btn {
   border-bottom: 3px solid rgba(100, 100, 100, 0.4);
 }
 
+.sep {
+  border: 2px solid #96a6b5;
+  width: 75%;
+}
+
 .head-box-el {
   height: 100%;
   width: 100%;
@@ -98,6 +85,10 @@ a.start-btn {
 
 .button-container {
   text-align: center;
+}
+
+.top-buffer {
+  margin-top: 50px;
 }
 
 /******* ID SELECTORS *******/
