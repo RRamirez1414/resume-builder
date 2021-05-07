@@ -7,7 +7,8 @@
 </div>
 
 <div class="container-fluid mt-3 w-75 interface-design p-4">
-  <form action="/user/edit-website" method="POST">
+  <form action="/user/save-resume" method="POST">
+    <input type="text" hidden name="username" id="username" value="<%= username %>">
     <div class="row">
       <!--classes such as form-control are styles from bootstrap-->
       <div class="col-12 mb-3">
