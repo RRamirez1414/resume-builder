@@ -1,42 +1,54 @@
-const express = require("express");
-const router = express.Router();
-const User = require("../models/user");
-const ResumeInfo = require("../models/resumeInfo")
-const States = require("../models/states");
-const Months = require("../models/months");
+const express = require('express')
+const router = express.Router()
+const User = require('../models/user')
+const ResumeInfo = require('../models/resumeInfo')
+const States = require('../models/states')
+const Months = require('../models/months')
 
-let loggedUser = {};
+let loggedUser = {}
 
-router.get("/:username", (req, res) => {
+//host/user/:username
+router.get('/:username', (req, res) => {
   const username = req.params.username
-  User.findOne({username: username}, (error, foundUser) => {
-    if(!error) {
+  User.findOne({ username: username }, (error, foundUser) => {
+    if (!error) {
       loggedUser = foundUser
-      res.render("home/home", {
+      res.render('home/home', {
         username: loggedUser.username,
-        fname: loggedUser.firstName
+        fname: loggedUser.firstName,
       })
     }
   })
 })
 
-//'host/user/new-form'
-router.get("/:username/new-form", async (req, res) => {
-  let states = await States.find({});
-  let months = await Months.find({});
-  res.render("user/new-website-form", {states: states, months: months});
-});
-
-//"host/user/:username/"
-router.get("/:username/view-list", async (req, res) => {
-  let resumeList = await ResumeInfo.find({user: loggedUser._id})
-  res.render("home/viewResumeList", {resumeList: resumeList} );
+//host/user/:username/new-form
+router.get('/:username/new-form', async (req, res) => {
+  let states = await States.find({})
+  let months = await Months.find({})
+  res.render('user/new-website-form', { states: states, months: months })
 })
 
+//host/user/:username/view-list
+router.get('/:username/view-list', async (req, res) => {
+  let resumeList = await ResumeInfo.find({ user: loggedUser._id })
+  res.render('home/viewResumeList', { resumeList: resumeList })
+})
+
+//host/user/:username/view-list/:resumeid
+router.get('/:username/view-list/:resumeid', async (req, res) => {
+  let resume = await ResumeInfo.find({
+    user: loggedUser._id,
+    _id: req.params.resumeid,
+  })
+  res.render('user/edit-resume-form', {
+    username: loggedUser._id,
+    resume: resume[0],
+  })
+})
 
 //generated website end point
-router.get("/page/:username", (req, res) => {
-  const username = req.params.username;
+router.get('/page/:username', (req, res) => {
+  const username = req.params.username
   User.findOne(
     {
       /** find user by username from route
@@ -47,29 +59,37 @@ router.get("/page/:username", (req, res) => {
     },
     (err, foundUser) => {
       if (!err) {
-        firstName = foundUser.firstName;
+        firstName = foundUser.firstName
         //render the user's website through ejs
-        res.render("user/user-website", {
+        res.render('user/user-website', {
           firstName: firstName,
           bio: loggedUser.bio,
-        });
+        })
       } else {
         //alert the user the website has not been found
-        alert("web page not found!");
+        alert('web page not found!')
       }
     }
-  );
-});
+  )
+})
+// router.post('/delete-resume', () => {})
 
-router.post("/create-website", (req, res) => {
+//host/user/confirm-edits, handle resume edits
+router.post('/confirm-edits', (req, res) => {
+  //gather form values and change accordingly in resumeInfo db, redirect to list
+  console.log(req.body)
+  res.redirect(`${loggedUser.username}/view-list`)
+})
+
+router.post('/create-website', (req, res) => {
   //RR:
-  //handle form data from url body info, store to DB
-  //render new link with user id or username from DB as a path
-  //for later, also store link to a collection of website links to DB tied to the user
-  loggedUser.bio = req.body.personalBio;
+  //change route to create-website, update
+  //handle form data from url req body, create and to resumeInfo DB
+  //don't store to logged user
+  loggedUser.bio = req.body.personalBio
 
   //? app claims cannot read property of first name on database of null but still loads the document anyway?
-  res.redirect("/user/page/" + loggedUser.username);
-});
+  res.redirect('/user/page/' + loggedUser.username)
+})
 
-module.exports = router;
+module.exports = router

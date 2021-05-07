@@ -7,7 +7,7 @@
 </div>
 
 <div class="container-fluid mt-3 w-75 interface-design p-4">
-  <form action="/user/create-website" method="POST">
+  <form action="/user/edit-website" method="POST">
     <div class="row">
       <!--classes such as form-control are styles from bootstrap-->
       <div class="col-12 mb-3">
@@ -38,7 +38,7 @@
               <option value="Work">Work</option>
             </select>
           </div>
-          <input class="form-control input-lg input-style" type="text" name="phone1" id="phone1" placeholder="phone 1...">
+          <input class="form-control input-lg input-style" type="text" name="phone1" id="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="phone 1...">
         </div> 
       </div>
 
@@ -54,7 +54,7 @@
               <option value="Work">Work</option>
             </select>
           </div>
-          <input class="form-control input-lg input-style" type="text" name="phone2" id="phone2" placeholder="phone 2...">
+          <input class="form-control input-lg input-style" type="text" name="phone2" id="phone2" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="phone 2...">
         </div> 
       </div>
 

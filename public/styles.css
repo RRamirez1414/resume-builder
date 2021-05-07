@@ -1,103 +1,103 @@
-/******* TAG SELECTORS *******/ 
+/******* TAG SELECTORS *******/
 body {
-    color: #026670;
+  color: #026670;
 }
 
 footer {
-    position: fixed;
-    bottom: 0px;
-    height: 100px;
-    width: 100%;
+  position: fixed;
+  bottom: 0px;
+  height: 100px;
+  width: 100%;
 }
 
 label {
-    color: rgb(250,250,250);
-    font-size:24px;
-    text-shadow: 3px 3px rgba(100,100,100,0.4);
+  color: rgb(250, 250, 250);
+  font-size: 24px;
+  text-shadow: 3px 3px rgba(100, 100, 100, 0.4);
 }
 
 /******* CLASS SELECTORS *******/
 .float-right {
-    float: right
+  float: right;
 }
 
 .head-box {
-    background-color: #9fedd7;
-    color: #026670;
-    border: 3px solid #026670;
-    text-shadow: 3px 3px #d8d2c7;
+  background-color: #9fedd7;
+  color: #026670;
+  border: 3px solid #026670;
+  text-shadow: 3px 3px #d8d2c7;
 }
 
-.head-box a{
-    color: inherit; /* blue colors for links too */
-    text-decoration: inherit;
+.head-box a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit;
 }
 
-.resume-add-btn{
-    padding: 1px 6px 1px 6px;
+.resume-add-btn {
+  padding: 1px 6px 1px 6px;
 }
 
 .header-btn {
-    background-color:#CAEBF2;
-    color: black;
-    text-decoration: none;
-    padding: 2px;
-    border: 2px solid #808080;
-    border-radius: 30px;
-    font-size: 32px;
-    width: 200px;
-    height: 100%;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+  background-color: #caebf2;
+  color: black;
+  text-decoration: none;
+  padding: 2px;
+  border: 2px solid #808080;
+  border-radius: 30px;
+  font-size: 32px;
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .headers {
-    padding: 5px;
-    text-shadow: 3px 3px #d8d2c7;
-    color: #026670;
+  padding: 5px;
+  text-shadow: 3px 3px #d8d2c7;
+  color: #026670;
 }
 
 a.start-btn {
-    background-color: #9fedd7;
-    color: #026670;
-    text-decoration: none;
-    padding: 10px;
-    border: 3px solid #026670;
-    border-radius: 200px;
-    font-size: 36px;
-    width: 320px;
-    text-align: center;
+  background-color: #9fedd7;
+  color: #026670;
+  text-decoration: none;
+  padding: 10px;
+  border: 3px solid #026670;
+  border-radius: 200px;
+  font-size: 36px;
+  width: 320px;
+  text-align: center;
 }
 
 .sep {
-    border: 2px solid #026670;
-    width: 75%;
+  border: 2px solid #026670;
+  width: 75%;
 }
 
 .interface-design {
-    background-color: rgba(169,169,169,0.4);
-    padding: 10px;
-    border-bottom: 5px solid rgba(100,100,100,0.4);
-    border-right: 5px solid rgba(100,100,100,0.4);
-    border-radius: 5px;
+  background-color: rgba(169, 169, 169, 0.4);
+  padding: 10px;
+  border-bottom: 5px solid rgba(100, 100, 100, 0.4);
+  border-right: 5px solid rgba(100, 100, 100, 0.4);
+  border-radius: 5px;
 }
 
 .input-style {
-    background-color: rgba(230,230,230);
-    color: white;
-    border-radius: 6px;
-    border-right: 3px solid rgba(100,100,100,0.4);
-    border-bottom: 3px solid rgba(100,100,100,0.4);
+  background-color: rgba(230, 230, 230);
+  color: white;
+  border-radius: 6px;
+  border-right: 3px solid rgba(100, 100, 100, 0.4);
+  border-bottom: 3px solid rgba(100, 100, 100, 0.4);
 }
 
 .head-box-el {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .button-container {
-    text-align: center;
+  text-align: center;
 }
 
 /******* ID SELECTORS *******/

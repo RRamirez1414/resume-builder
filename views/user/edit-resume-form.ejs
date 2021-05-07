@@ -1,0 +1,93 @@
+<%- include("../partials/header.ejs") %>
+<h2>Edit Resume - <%= resume.siteTitle %>
+</h2>
+
+<div class="container-fluid mt-3 w-75 interface-design p-4">
+    <form action="/user/confirm-edits" method="POST">
+        <div class="row">
+            <!--classes such as form-control are styles from bootstrap-->
+            <div class="col-12 mb-3">
+                <label for="siteTitle">Website Title:</label>
+                <input class="form-control input-lg input-style" type="text" name="siteTitle" id="siteTitle"
+                    placeholder="title..." value=<%=resume.siteTitle %> required />
+            </div>
+            <div class="col-6 mb-3">
+                <label for="address">Address: </label>
+                <input class="form-control input-lg input-style" type="text" name="address" id="address"
+                    value=<%=resume.address %> placeholder="address.." />
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="phone1Type">Phone 1: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="phone1Type" id="phone1Type" class="form-control input-style">
+                            <option value="" selected disabled hidden>
+                                <%= resume.phone1Type%>
+                            </option>
+                            <option value="">Type</option>
+                            <option value="Cell">Cell</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
+                    <input class="form-control input-lg input-style" type="text" name="phone1" id="phone1"
+                        placeholder="phone 1..." pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value=<%= resume.phone1 %>>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="phone2Type">Phone 2: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="phone2Type" id="phone2Type" class="form-control input-style">
+                            <option value="" selected disabled hidden>
+                                <%= resume.phone2Type%>
+                            </option>
+                            <option value="">Type</option>
+                            <option value="Cell">Cell</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
+                    <input class="form-control input-lg input-style" type="text" name="phone2" id="phone2"
+                        placeholder="phone 2..." pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value=<%= resume.phone2 %>>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="email1">Email 1:</label>
+                <input type="text" class="form-control input-lg input-style" name="email1" id="email1"
+                    placeholder="email 1..." value=<%= resume.email1%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="email2">Email 2:</label>
+                <input type="text" class="form-control input-lg input-style" name="email2" id="email2"
+                    placeholder="email 2..." value=<%= resume.email2%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="link1">Personal Link 1:</label>
+                <input type="text" class="form-control input-lg input-style" name="link1" id="link1"
+                    placeholder="link 1..." value=<%= resume.link1%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="link2">Peronsal Link 2:</label>
+                <input type="text" class="form-control input-lg input-style" name="link2" id="link2"
+                    placeholder="link 2..." value=<%= resume.link2%>>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="profSum">Professional Summary:</label></label>
+                <textarea class="form-control input-sm input-style" type="text" name="profSum" id="profSum"
+                    placeholder="biography...." rows="5" required ><%= resume.profSum %></textarea>
+            </div>
+            <div class="">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+    </form>
+    <%- include("../partials/footer.ejs") %>

@@ -1,15 +1,29 @@
 <%- include('../partials/header.ejs') %>
 
 <div class="container-fluid mt-5 w-75 interface-design">
-    <div>
-        <div class="d-flex justify-content-center"><h1 class="headers">Welcome, <%= fname %>! </h1></div>
-        <hr class="sep">
-        <div class="button-container justify-content-center">
-        <div class="d-flex justify-content-center my-5 w-100"><a href="<%= username %>/new-form" class="start-btn">New Resume</a></div>
-            <div><button class="header-btn"><h3 class="head-box-el"><a href="<%= username %>/view-list">Edit Resume</a></h3></button></div>
-            <div><button class="header-btn"><h3 class="head-box-el">View Website</h3></button></div>
-        </div>
+  <div>
+    <div class="d-flex justify-content-center">
+      <h1 class="headers">Welcome, <%= fname %>!</h1>
     </div>
+    <hr class="sep" />
+    <div class="button-container justify-content-center">
+      <div class="d-flex justify-content-center my-5 w-100">
+        <a href="<%= username %>/new-form" class="start-btn">New Resume</a>
+      </div>
+      <div>
+        <button class="header-btn">
+          <h3 class="head-box-el">
+            <a href="<%= username %>/view-list">Edit Resume</a>
+          </h3>
+        </button>
+      </div>
+      <div>
+        <button class="header-btn">
+          <h3 class="head-box-el">View Website</h3>
+        </button>
+      </div>
+    </div>
+  </div>
 
-<%- include("../partials/footer.ejs") %>
-
+  <%- include("../partials/footer.ejs") %>
+</div>
