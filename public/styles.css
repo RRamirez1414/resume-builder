@@ -1,6 +1,6 @@
 /******* TAG SELECTORS *******/ 
 body {
-    color: black;
+    color: #0066cb;
 }
 
 footer {
@@ -61,7 +61,7 @@ a.start-btn{
 }
 
 .sep {
-    border: 2px solid black;
+    border: 2px solid #0066cb;
     width: 75%;
 }
 
@@ -81,12 +81,6 @@ a.start-btn{
     border-bottom: 3px solid rgba(100,100,100,0.4);
 }
 
-/******* TAG SELECTORS *******/ 
-body {
-    color: #026670;
-}
-
-/******* CLASS SELECTORS *******/
 .head-box{
     background-color: #A9A9A9;
     color: black;
@@ -96,9 +90,9 @@ body {
 }
 
 .head-box {
-    background-color: #9fedd7;
-    color: #026670;
-    border: 3px solid #026670;
+    background-color: rgba(100, 178, 255,0.4);
+    color: #0066cb;
+    border: 3px solid #0066cb;
     text-shadow: 3px 3px #d8d2c7;
 }
 
@@ -120,13 +114,13 @@ body {
 .headers {
     padding: 5px;
     text-shadow: 3px 3px rgba(100,100,100,0.4);
-    color: balck;
+    color: black;
 }
 
 .headers {
     padding: 5px;
     text-shadow: 3px 3px #d8d2c7;
-    color: #026670;
+    color: #0066cb;
 }
 
 a.start-btn{
@@ -143,10 +137,10 @@ a.start-btn{
 
 a.start-btn {
     background-color: #9fedd7;
-    color: #026670;
+    color: #0066cb;
     text-decoration: none;
     padding: 10px;
-    border: 3px solid #026670;
+    border: 3px solid #0066cb;
     border-radius: 200px;
     font-size: 36px;
     width: 320px;
@@ -154,7 +148,7 @@ a.start-btn {
 }
 
 .sep {
-    border: 2px solid #026670;
+    border: 2px solid #0066cb;
     width: 75%;
 }
 
@@ -180,6 +174,10 @@ footer {
 
 .button-container {
     text-align: center;
+}
+
+.top-buffer {
+    margin-top: 50px;
 }
 
 /******* ID SELECTORS *******/
