@@ -14,7 +14,6 @@ const educationSchema = new mongoose.Schema({
     achieved: { // level of education BA, MA, DR, HS
         type: String,
         required: true,
-        maxlength: 2
     },
     program: { //Program of study: i.e. Computer Science
         type: String,
