@@ -23,11 +23,11 @@ const resumeInfoSchema = new mongoose.Schema({
     },
     phone1: {
         type: String,
-        match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, // regex to work for formats (123) 456-7890 or 123-456-7890
+        match: /^[1-9]\d{2}-\d{3}-\d{4}/, // regex to work for format 123-456-7890
     },
     phone2: {
         type: String,
-        match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/,
+        match: /^[1-9]\d{2}-\d{3}-\d{4}/,
     },
     link1: {
         type: String

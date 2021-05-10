@@ -1,25 +1,106 @@
 <%- include('../partials/header.ejs') %>
 
-
-  
-
-
-<div class="container-fluid mt-5 w-50 interface-design p-4">
-  <h1 class="text-center headers">Login Page</h1>
-  <hr class="sep">
-  <form action="/login" method="POST">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" name="username" required>
+<div class="log-sign">
+  <div class="container-fluid mt-5 w-25 interface-design">
+    <div class="d-flex justify-content-center">
+      <h1 class="headers">Log-in</h1>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" name="password" required>
+    <form method="POST" action="/login">
+      <div class="login-prompt">
+        <label for="loginUsername">Username:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="loginUsername"
+          id="login-username"
+          placeholder="username..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="login-password">Password:</label>
+        <input
+          class="float-right"
+          type="password"
+          name="loginPassword"
+          id="login-Password"
+          placeholder="password..."
+          required
+        />
+      </div>
+      <div class="text-center mt-3">
+      <button
+        type="submit"
+        class="btn btn-dark w-25"
+        name="submitButton"
+        value="login"
+      >
+        Login
+      </button>
     </div>
-
-    <div class="text-center top-buffer"><button type="submit" class="btn btn-dark w-50 mt-3 align-self-center">Login</button></div>
-  </form>
+    </form>
+  </div>
+  <div class="container-fluid mt-5 w-25 interface-design">
+    <div class="d-flex justify-content-center">
+      <h1 class="headers">Sign-up</h1>
+    </div>
+    <form method="POST" action="/login">
+      <div class="login-prompt">
+        <label for="signup-firstname">First Name:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupFirstname"
+          id="signup-firstname"
+          placeholder="first name..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-lastname">Last Name:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupLastname"
+          id="signup-lastname"
+          placeholder="last name..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-username">Username:</label>
+        <input
+          class="float-right"
+          type="text"
+          name="signupUsername"
+          id="signup-username"
+          placeholder="username..."
+          required
+        />
+      </div>
+      <div class="login-prompt">
+        <label for="signup-password">Password:</label>
+        <input
+          class="float-right"
+          type="password"
+          name="signupPassword"
+          id="signup-Password"
+          placeholder="password..."
+          required
+        />
+      </div>
+      <div class="text-center mt-3">
+      <button
+        type="submit"
+        class="btn btn-dark w-25"
+        name="submitButton"
+        value="signup"
+      >
+        Sign Up
+      </button>
+      </div>
+    </form>
+  </div>
 </div>
 
-
-<%- include('../partials/footer.ejs') %>
+<%- include("../partials/footer.ejs") %>

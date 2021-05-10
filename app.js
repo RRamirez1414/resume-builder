@@ -2,6 +2,7 @@ const express = require("express");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path  = require('path');
 const User = require("./models/user");
 const homeRouter = require("./routes/homeRouter.js");
 const userRouter = require("./routes/userRouter.js");
@@ -15,7 +16,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(bodyParser.urlencoded({ extended: "true" }));
 
 //mongoose database connection

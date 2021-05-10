@@ -1,0 +1,238 @@
+<%- include("../partials/header.ejs") %>
+<h2>Edit Resume - <%= resume.siteTitle %>
+</h2>
+
+<div class="container-fluid mt-3 w-75 interface-design p-4">
+    <form action="/user/confirm-edits" method="POST">
+      <input type="text" name="resumeID" hidden value="<%= resume._id %>">
+      <input type="text" name="userID" hidden value="<%= username %>">
+        <div class="row">
+            <!--classes such as form-control are styles from bootstrap-->
+            <div class="col-12 mb-3">
+                <label for="siteTitle">Website Title:</label>
+                <input class="form-control input-lg input-style" type="text" name="siteTitle" id="siteTitle"
+                    placeholder="title..." value=<%=resume.siteTitle %> required />
+            </div>
+            <div class="col-6 mb-3">
+                <label for="address">Address: </label>
+                <input class="form-control input-lg input-style" type="text" name="address" id="address"
+                    value="<%=resume.address %>" placeholder="address.." />
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="phone1Type">Phone 1: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="phone1Type" id="phone1Type" class="form-control input-style">
+                            <option value="" selected disabled hidden>
+                                <%= resume.phone1Type%>
+                            </option>
+                            <option value="">Type</option>
+                            <option value="Cell">Cell</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
+                    <input class="form-control input-lg input-style" type="text" name="phone1" id="phone1"
+                        placeholder="phone 1..." pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value=<%= resume.phone1 %>>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="phone2Type">Phone 2: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="phone2Type" id="phone2Type" class="form-control input-style">
+                            <option value="" selected disabled hidden>
+                                <%= resume.phone2Type%>
+                            </option>
+                            <option value="">Type</option>
+                            <option value="Cell">Cell</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
+                    <input class="form-control input-lg input-style" type="text" name="phone2" id="phone2"
+                        placeholder="phone 2..." pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value=<%= resume.phone2 %>>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="email1">Email 1:</label>
+                <input type="text" class="form-control input-lg input-style" name="email1" id="email1"
+                    placeholder="email 1..." value=<%= resume.email1%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="email2">Email 2:</label>
+                <input type="text" class="form-control input-lg input-style" name="email2" id="email2"
+                    placeholder="email 2..." value=<%= resume.email2%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="link1">Personal Link 1:</label>
+                <input type="text" class="form-control input-lg input-style" name="link1" id="link1"
+                    placeholder="link 1..." value=<%= resume.link1%>>
+            </div>
+
+            <div class="col-3 mb-3">
+                <label for="link2">Peronsal Link 2:</label>
+                <input type="text" class="form-control input-lg input-style" name="link2" id="link2"
+                    placeholder="link 2..." value=<%= resume.link2%>>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="profSum">Professional Summary:</label></label>
+                <textarea class="form-control input-sm input-style" type="text" name="profSum" id="profSum"
+                    placeholder="biography...." rows="5" required ><%= resume.profSum %></textarea>
+            </div>
+
+            <div class="col-12 mb-3">
+              <label for="Skills">Skills</label>
+              <select name="Skills" id="skills" multiple="multiple" class="form-control input-style input-sm">
+                <option value="" selected disabled>Add Skills...</option>
+                <% skills.forEach( skill => { %>
+                  <option value="<%= skill %>" selected><%= skill %></option>
+                <% }) %>
+              </select>
+            </div>
+            
+            <!--Education Form-->
+            <% educationList.forEach((education, index) => { %>
+                <div class="col-12 mb-3">
+                    <label for="institution">Institution: </label>
+                    <input type="text" class="form-control input-lg input-style" name="institution" id="institution_<%= index %>" value="<%= education.institution %>" placeholder="Institution Name...">
+                </div>
+                <div class="col-4 mb-3">
+                    <label for="achieved">Degree</label>
+                    <input type="text" class="form-control input-lg input-style" name="achieved" id="achieved_<%= index %>" value=<%= education.achieved %> placeholder="AS, BS, MS, PHD etc...">
+                </div>
+                <div class="col-4 mb-3">
+                    <label for="program">Program</label>
+                    <input type="text" class="form-control input-lg input-style" name="program" id="program_<%= index %>" value="<%= education.program %>" placeholder="Program Name...">
+                </div>
+                <div class="col-4 mb-3">
+                    <label for="gradYear">Grad Year</label>
+                    <input type="number" min="1900" max="2099" step="1" class="form-control input-lg input-style" name="gradYear" id="gradYear_<%= index %>" value="<%= education.gradYear %>" placeholder="Graduation Year..."/>
+                </div>
+                <div class="col-3 mb-3">
+                    <label for="graduated">Graduated</label>
+                    <select name="graduated" id="graduated_<%= index %>" class="form-control input-style input-lg">
+                        <option value="" selected disabled hidden><%= education.graduated %></option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control input-lg input-style" name="city" id="city_<%= index %>" value="<%= education.city %>">
+                </div>
+                <div class="col-3 mb-3">
+                    <label for="state">State</label>
+                    <select name="state" id="state_<%= index %>" class="form-control input-style input-lg">
+                        <option value="" selected disabled hidden><%= education.state  %></option>
+                        <option value="<%= states.stateCode %>"><%= states.stateDesc %></option>
+                        <% states.forEach(state => { %>
+                            <option value="<%= state.stateCode %>"><%= state.stateDesc %></option> 
+                        <% }); %>
+                    </select>
+                </div>
+            <% }) %> 
+
+            <!--Experience Form-->
+            <% experienceList.forEach((exp, index) => { %>
+                <div class="col-12 mb-3">
+                <label for="expName">Experience Name: </label>
+                <input type="text" class="form-control input-lg input-style" name="expName" id="expName_<%= index %>" value=<%= exp.expName %>placeholder="Exprience Name...">
+              </div>
+              <div class="col-4 mb-3">
+                <label for="title">Title: </label>
+                <input type="text" class="form-control input-lg input-style" name="title" id="title_<%= index %>" value=<%= exp.title %> placeholder="Title...">
+              </div>
+              <div class="col-2 mb-3">
+                <label for="fromMonth">From Month:</label>
+                <select name="fromMonth" id="fromMonth_<%= index %>" class="form-control input-style input-lg">
+                  <option value="" selected disabled hidden><%= exp.fromMonth %></option>
+                  <% months.forEach(month => { %>
+                    <option value="<%= month.monthCode %> "><%= month.monthDesc %> </option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-2 mb-3">
+                <label for="fromYear">From Year</label>
+                <input type="number" min="1900" max="2099" step="1" class="form-control input-lg input-style" name="fromYear" id="fromYear_<%= index %>" value=<%= exp.fromYear %> placeholder="From Year..."/>
+              </div>
+              <div class="col-2 mb-3">
+                <label for="toMonth">To Month:</label>
+                <select name="toMonth" id="toMonth_<%= index %>" class="form-control input-style input-lg">
+                  <option value="" selected disabled hidden><%= exp.toMonth %></option>
+                  <% months.forEach(month => { %>
+                    <option value="<%= month.monthCode %>"><%= month.monthDesc %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-2 mb-3">
+                <label for="toYear">to Year</label>
+                <input type="number" min="1900" max="2099" step="1" class="form-control input-lg input-style" name="toYear" id="toYear_<%= index %>" value=<%= exp.toYear %> placeholder="to Year..."/>
+              </div>
+              <div class="col-6 mb-3">
+                <label for="expCity">City</label>
+                <input type="text" class="form-control input-lg input-style" name="expCity" id="expCity_<%= index %>" value=<%= exp.city %> >
+              </div>
+              <div class="col-3 mb-3">
+                <label for="expState">State</label>
+                <select name="expState" id="expState_<%= index %>" class="form-control input-style input-lg">
+                  <option value="" selected disabled hidden><%= exp.state %></option>
+                  <% states.forEach(state => { %>
+                    <option value="<%= state.stateCode %>"><%= state.stateDesc %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="description">Description:</label>
+                <textarea
+                  class="form-control input-sm input-style"
+                  type="text"
+                  name="description"
+                  id="description_<%= index %>"
+                  placeholder="Description...."
+                  rows="5"
+                  required
+                ><%= exp.description %></textarea>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="jobDuties">Job Duties:</label>
+                <textarea
+                  class="form-control input-sm input-style"
+                  type="text"
+                  name="jobDuties"
+                  id="jobDuties_<%= index %>"
+                  placeholder="Job Duties...."
+                  rows="5"
+                  required
+                ><%= exp.jobDuties %></textarea>
+              </div>
+            <% }) %> 
+              <div class="col-12 mb-3">
+                <label for="">Education</label>
+                <button type="button" id="addEducation" title="Add Education" class="btn btn-info ml-2 resume-add-btn"><i class="fas fa-sm fa-plus"></i></button>
+                <div id="educationSection" class="row"></div>
+              </div>
+              <div class="col-12 mb-3">
+                <label for="">Experience</label>
+                <button type="button" id="addExperience" title="Add Experience" class="btn btn-info ml-2 resume-add-btn"><i class="fas fa-sm fa-plus"></i></button>
+                <div id="experienceSection" class="row">
+                </div>
+              </div>
+            
+            <!--submit button-->
+            <div class="">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src='/scripts/injection-form.js'></script>
+    <%- include("../partials/footer.ejs") %>

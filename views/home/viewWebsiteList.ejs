@@ -1,0 +1,7 @@
+<%- include("../partials/header.ejs") %>
+
+<h1>Website List</h1>
+<p>Websites are listed for each resume</p>
+<% websiteList.forEach(resume => { %>
+<h3><%= resume.siteTitle %><a href="view-website-list/<%= resume._id %>">View</a></h3>
+<% }); %> <%- include("../partials/footer.ejs") %>
