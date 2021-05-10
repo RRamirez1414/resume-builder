@@ -24,6 +24,10 @@ router.get('/:username', (req, res) => {
   })
 })
 
+router.get('/:username/sample', (req, res) => {
+  res.render('user/sample')
+});
+
 //host/user/:username/new-form
 router.get('/:username/new-form', async (req, res) => {
   let states = await States.find({})
