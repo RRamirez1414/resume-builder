@@ -55,10 +55,12 @@ router.get('/:username/view-list/:resumeid', async (req, res) => {
   let months = await Months.find({})
   let educationList = await Educations.find({resumeInfo: resumeId})
   let experienceList = await Experiences.find({resumeInfo: resumeId})
+  let skills = resume[0]['skills'].split(",")
 
   res.render('user/edit-resume-form', {
     username: loggedUser._id,
     resume: resume[0],
+    skills: skills,
     states: states,
     months: months,
     educationList: educationList,
@@ -94,10 +96,13 @@ router.get('/:username/view-website-list/:resumeid', async (req, res) => {
 
 //host/user/confirm-edits, handle resume edits
 router.post('/confirm-edits', async (req, res) => {
-  const resumeID = await saveResumeInfo(req.body);
-  saveEducationInfo(req.body, resumeID);
-  saveExperienceInfo(req.body, resumeID);
-  res.redirect(`${loggedUser.username}/view-list`)
+  const user = await User.findById(req.body.userID);
+  updateResumeInfo(req.body);
+  // console.log([user.username, req.body.resumeID]);
+  res.redirect(`/user/${user.username}/view-list/${req.body.resumeID}`)
+  // saveEducationInfo(req.body, resumeID);
+  // saveExperienceInfo(req.body, resumeID);
+  // res.redirect(`${loggedUser.username}/view-list`)
 })
 
 router.post('/save-resume', async (req, res) => {
@@ -107,6 +112,43 @@ router.post('/save-resume', async (req, res) => {
   res.redirect(`/user/${req.body.username}/view-list/${resumeID}`)
   res.send("save complete");
 });
+
+async function updateResumeInfo(reqBody, resumeID){
+  const info = reqBody;
+  console.log(info);
+  let resumeInfo;
+  try {
+    resumeInfo = await ResumeInfo.findById(info.resumeID);
+    resumeInfo.siteTitle = info.siteTitle;
+    resumeInfo.address = info.address;
+    resumeInfo.phone1Type = info.phone1Type;
+    resumeInfo.phone2Type = info.phone2Type;
+    resumeInfo.phone1 = info.phone1;
+    resumeInfo.phone2 = info.phone2;
+    resumeInfo.link1 = info.link1;
+    resumeInfo.link2 = info.link2;
+    resumeInfo.email1 = info.email1;
+    resumeInfo.email2 = info.email2;
+    resumeInfo.profSum = info.profSum;
+    if(info.Skills != null && info.Skills.length > 1 && info.Skills.length != 0){
+      resumeInfo.skills = "";
+      info.Skills.forEach((skill, idx, array) => {
+        if(idx === array.length - 1){
+          resumeInfo.skills += skill;
+        } else{
+          resumeInfo.skills += skill + ",";
+        }
+      });
+    } else if(info.Skills != null && info.Skills.length == 1){
+      resumeInfo.skills = info.Skills;
+    }
+    resumeInfo.save();
+    console.log("Current Resume being updated\n" +resumeInfo);
+  } catch (error) {
+    console.log("error updating resume info");
+    console.log(error);
+  }
+}
 
 async function saveExperienceInfo(reqBody, resumeID){
   const info = reqBody;
