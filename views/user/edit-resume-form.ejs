@@ -4,6 +4,8 @@
 
 <div class="container-fluid mt-3 w-75 interface-design p-4">
     <form action="/user/confirm-edits" method="POST">
+      <input type="text" name="resumeID" hidden value="<%= resume._id %>">
+      <input type="text" name="userID" hidden value="<%= username %>">
         <div class="row">
             <!--classes such as form-control are styles from bootstrap-->
             <div class="col-12 mb-3">
@@ -14,7 +16,7 @@
             <div class="col-6 mb-3">
                 <label for="address">Address: </label>
                 <input class="form-control input-lg input-style" type="text" name="address" id="address"
-                    value=<%=resume.address %> placeholder="address.." />
+                    value="<%=resume.address %>" placeholder="address.." />
             </div>
 
             <div class="col-3 mb-3">
@@ -86,6 +88,16 @@
                 <textarea class="form-control input-sm input-style" type="text" name="profSum" id="profSum"
                     placeholder="biography...." rows="5" required ><%= resume.profSum %></textarea>
             </div>
+
+            <div class="col-12 mb-3">
+              <label for="Skills">Skills</label>
+              <select name="Skills" id="skills" multiple="multiple" class="form-control input-style input-sm">
+                <option value="" selected disabled>Add Skills...</option>
+                <% skills.forEach( skill => { %>
+                  <option value="<%= skill %>" selected><%= skill %></option>
+                <% }) %>
+              </select>
+            </div>
             
             <!--Education Form-->
             <% educationList.forEach((education, index) => { %>
@@ -120,10 +132,10 @@
                 <div class="col-3 mb-3">
                     <label for="state">State</label>
                     <select name="state" id="state_<%= index %>" class="form-control input-style input-lg">
-                        <option value="" selected disabled hidden><%= education.state  %> </option>
-                        <option value="<%= states.stateCode %> "><%= states.stateDesc %> </option>
+                        <option value="" selected disabled hidden><%= education.state  %></option>
+                        <option value="<%= states.stateCode %>"><%= states.stateDesc %></option>
                         <% states.forEach(state => { %>
-                            <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option> 
+                            <option value="<%= state.stateCode %>"><%= state.stateDesc %></option> 
                         <% }); %>
                     </select>
                 </div>
@@ -155,9 +167,9 @@
               <div class="col-2 mb-3">
                 <label for="toMonth">To Month:</label>
                 <select name="toMonth" id="toMonth_<%= index %>" class="form-control input-style input-lg">
-                  <option value="" selected disabled hidden><%= exp.toMonth %> </option>
+                  <option value="" selected disabled hidden><%= exp.toMonth %></option>
                   <% months.forEach(month => { %>
-                    <option value="<%= month.monthCode %> "><%= month.monthDesc %> </option>
+                    <option value="<%= month.monthCode %>"><%= month.monthDesc %></option>
                   <% }) %>
                 </select>
               </div>
@@ -174,7 +186,7 @@
                 <select name="expState" id="expState_<%= index %>" class="form-control input-style input-lg">
                   <option value="" selected disabled hidden><%= exp.state %></option>
                   <% states.forEach(state => { %>
-                    <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
+                    <option value="<%= state.stateCode %>"><%= state.stateDesc %></option>
                   <% }) %>
                 </select>
               </div>
@@ -203,13 +215,6 @@
                 ><%= exp.jobDuties %></textarea>
               </div>
             <% }) %> 
-
-            <div class="col-12 mb-3">
-                <label for="Skills">Skills</label>
-                <select name="Skills" id="skills" multiple="multiple" class="form-control input-style input-sm">
-                  <option value="" selected disabled>Add Skills...</option>
-                </select>
-              </div>
               <div class="col-12 mb-3">
                 <label for="">Education</label>
                 <button type="button" id="addEducation" title="Add Education" class="btn btn-info ml-2 resume-add-btn"><i class="fas fa-sm fa-plus"></i></button>
