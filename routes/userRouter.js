@@ -4,8 +4,13 @@ const User = require('../models/user')
 const ResumeInfo = require('../models/resumeInfo')
 const States = require('../models/states')
 const Months = require('../models/months')
+<<<<<<< HEAD
 const Education = require('../models/education')
 const Experience = require('../models/experience')
+=======
+const Educations = require('../models/education')
+const Experiences = require('../models/experience')
+>>>>>>> editResume
 
 let loggedUser = {}
 
@@ -38,14 +43,28 @@ router.get('/:username/view-list', async (req, res) => {
 
 //host/user/:username/view-list/:resumeid
 router.get('/:username/view-list/:resumeid', async (req, res) => {
+  let resumeId = req.params.resumeid
+  
+  //single resume comes back
   let resume = await ResumeInfo.find({
     user: loggedUser._id,
-    _id: req.params.resumeid,
+    _id: resumeId,
   })
+
+  let states = await States.find({})
+  let months = await Months.find({})
+  let educationList = await Educations.find({resumeInfo: resumeId})
+  let experienceList = await Experiences.find({resumeInfo: resumeId})
+
   res.render('user/edit-resume-form', {
     username: loggedUser._id,
     resume: resume[0],
-  })
+    states: states,
+    months: months,
+    educationList: educationList,
+    experienceList: experienceList
+  }) 
+  res.sendFile('../public/scripts/injection-scripts/injection-form.js')
 })
 
 //generated website end point
