@@ -12,4 +12,9 @@ router.get('/get-states', async (req, res) => {
   res.send(JSON.stringify(states))
 })
 
+router.get('/get-months', async (req, res) => {
+  let months = await Months.find({})
+  res.send(JSON.stringify(months))
+})
+
 module.exports = router

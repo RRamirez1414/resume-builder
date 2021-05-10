@@ -1,3 +1,25 @@
+/**
+ * preload data from an ajax request to this app's custom api to fetch db data
+ */
+var states
+var months
+
+$.ajax({
+  url: '/fetch/get-states',
+  success: function (result) {
+    //result comes as an array of documents
+    states = JSON.parse(result)
+  },
+})
+
+$.ajax({
+  url: '/fetch/get-months',
+  success: function (result) {
+    //result comes as an array of documents
+    months = JSON.parse(result)
+  },
+})
+
 $(document).ready(function () {
   $('#skills').select2({ tags: true })
   //keep track of dynamically generated education and experience
@@ -7,38 +29,38 @@ $(document).ready(function () {
   //process to dynamically create education information
   $('#addEducation').on('click', function (e) {
     e.preventDefault()
-    if ($('#institution_' + eduCount).length === 0) {
-      $('#educationSection').append(
-        `
+
+    $('#educationSection').append(
+      `
         <div class="col-12 mb-3">
           <label for="institution">Institution: </label>
           <input type="text" class="form-control input-lg input-style" name="institution" id="institution_` +
-          eduCount +
-          `" placeholder="Institution Name...">
+        eduCount +
+        `" placeholder="Institution Name...">
         </div>
         <div class="col-4 mb-3">
           <label for="achieved">Degree</label>
           <input type="text" class="form-control input-lg input-style" name="achieved" id="achieved_` +
-          eduCount +
-          `" placeholder="AS, BS, MS, PHD etc...">
+        eduCount +
+        `" placeholder="AS, BS, MS, PHD etc...">
         </div>
         <div class="col-4 mb-3">
           <label for="program">Program</label>
           <input type="text" class="form-control input-lg input-style" name="program" id="program_` +
-          eduCount +
-          `" placeholder="Program Name...">
+        eduCount +
+        `" placeholder="Program Name...">
         </div>
         <div class="col-4 mb-3">
           <label for="gradYear">Grad Year</label>
           <input type="number" min="1900" max="2099" step="1" class="form-control input-lg input-style" name="gradYear" id="gradYear_` +
-          eduCount +
-          `" placeholder="Graduation Year..."/>
+        eduCount +
+        `" placeholder="Graduation Year..."/>
         </div>
         <div class="col-3 mb-3">
           <label for="graduated">Graduated</label>
           <select name="graduated" id="graduated_` +
-          eduCount +
-          `" class="form-control input-style input-lg">
+        eduCount +
+        `" class="form-control input-style input-lg">
             <option value="" disabled selected>Select One</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -47,52 +69,32 @@ $(document).ready(function () {
         <div class="col-6 mb-3">
           <label for="city">City</label>
           <input type="text" class="form-control input-lg input-style" name="city" id="city_` +
-          eduCount +
-          `">
+        eduCount +
+        `">
         </div>
         <div class="col-3 mb-3">
           <label for="state">State</label>
           <select name="state" id="state_` +
-          eduCount +
-          `" class="form-control input-style input-lg">
-            <option value="" disabled selected>Select State</option>
-            <option value="">Test</option>
+        eduCount +
+        `" class="form-control input-style input-lg">
           </select>
         </div>
       `
-      )
-      /**
-       * make an ajax request to this app's custom api to fetch db data
-       * create an ejs snipped and append it where needed
-       */
-      $('#educationSection').ready(() => {
-        $.ajax({
-          url: '/query/get-states',
-          success: function (result) {
-            //result comes as an array of documents
-            states = JSON.parse(result)
+    )
+    //render html from ejs and store in a variable
+    var statesOptionsHtml = ejs.render(
+      `<% states.forEach(state => { %>
+          <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
+        <% }) %>`,
+      { states: states }
+    )
 
-            //render ejs into html and store it in 'html'
-            statesOptionsHtml = ejs.render(
-              `<% states.forEach(state => { %>
-              <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
-            <% }) %>`,
-              { states: states }
-            )
-
-            //append html to #states_ through DOM
-            console.log(statesOptionsHtml)
-            //! not appending? tries to append before the new html form snippet is fully added
-            // $(`#state_` + eduCount).html(statesOptionsHtml)
-            document.getElementById(
-              `state_` + eduCount
-            ).innerHTML = statesOptionsHtml
-          },
-        })
-      })
-
-      eduCount++
-    }
+    //append html accordingly to select options
+    $(`#state_` + eduCount).html(
+      `<option value="" disabled selected>Select State</option>` +
+        statesOptionsHtml
+    )
+    eduCount++
   })
 
   //process to dynamically create experience information
@@ -119,9 +121,6 @@ $(document).ready(function () {
           expCount +
           `" class="form-control input-style input-lg">
             <option value="" disabled selected>Select Month</option>
-            <% months.forEach(month => { %>
-              <option value="<%= month.monthCode %> "><%= month.monthDesc %> </option>
-            <% }) %>
           </select>
         </div>
         <div class="col-2 mb-3">
@@ -136,9 +135,6 @@ $(document).ready(function () {
           expCount +
           `" class="form-control input-style input-lg">
             <option value="" disabled selected>Select Month</option>
-            <% months.forEach(month => { %>
-              <option value="<%= month.monthCode %> "><%= month.monthDesc %> </option>
-            <% }) %>
           </select>
         </div>
         <div class="col-2 mb-3">
@@ -159,9 +155,6 @@ $(document).ready(function () {
           expCount +
           `" class="form-control input-style input-lg">
             <option value="" disabled selected>Select State</option>
-            <% states.forEach(state => { %>
-              <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
-            <% }) %>
           </select>
         </div>
         <div class="col-12 mb-3">
@@ -194,6 +187,36 @@ $(document).ready(function () {
         </div>
       `
       )
+
+      var monthsOptionsHtml = ejs.render(
+        `<% months.forEach(month => { %>
+        <option value="<%= month.monthCode %> "><%= month.monthDesc %> </option>
+      <% }) %>`,
+        { months: months }
+      )
+
+      var statesOptionsHtml = ejs.render(
+        `<% states.forEach(state => { %>
+          <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
+        <% }) %>`,
+        { states: states }
+      )
+
+      $(`#expState_` + expCount).html(
+        `<option value="" disabled selected>Select State</option>` +
+          statesOptionsHtml
+      )
+
+      $(`#fromMonth_` + expCount).html(
+        `<option value="" disabled selected>Select Month</option>` +
+          monthsOptionsHtml
+      )
+
+      $(`#toMonth_` + expCount).html(
+        `<option value="" disabled selected>Select Month</option>` +
+          monthsOptionsHtml
+      )
+
       expCount++
     }
   })

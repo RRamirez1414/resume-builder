@@ -7,7 +7,7 @@ const User = require('./models/user')
 const homeRouter = require('./routes/homeRouter.js')
 const userRouter = require('./routes/userRouter.js')
 const loginRouter = require('./routes/loginRouter.js')
-const queryRouter = require('./routes/queryRouter')
+const queryRouter = require('./routes/fetchRouter')
 const resumeInfo = require('./models/resumeInfo')
 const education = require('./models/education')
 const experience = require('./models/experience')
@@ -39,7 +39,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/user', userRouter)
 app.use('/login', loginRouter)
-app.use('/query', queryRouter)
+app.use('/fetch', queryRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
