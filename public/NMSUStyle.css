@@ -1,0 +1,25 @@
+.section-design {
+    background-color: rgba(200,200,200, 0.9);
+    padding: 10px;
+    border-bottom: 5px solid rgba(100, 100, 100, 0.4);
+    border-right: 5px solid rgba(100, 100, 100, 0.4);
+    border-radius: 5px;
+}
+
+.header-box {
+    background-color: rgb(140,11,66);
+    color: rgb(167,186,190);
+    border-bottom: 3px solid rgb(207,199,189);
+    border-right: 3px solid rgb(207,199,189);
+}
+
+.headers {
+    color: rgb(140,11,66);
+}
+
+body {
+    color: rgb(109,110,113)
+} 
+
+
+
