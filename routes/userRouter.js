@@ -86,32 +86,6 @@ router.get('/:username/view-website-list/:resumeid', async (req, res) => {
   })
 })
 
-// //generated website end point
-// router.get('/page/:username', (req, res) => {
-//   const username = req.params.username
-//   User.findOne(
-//     {
-//       /** find user by username from route
-//        * later, do another get request to handle multiple websites of the same user
-//        * something like /:username/:website-title
-//        */
-//       username: loggedUser.username,
-//     },
-//     (err, foundUser) => {
-//       if (!err) {
-//         firstName = foundUser.firstName
-//         //render the user's website through ejs
-//         res.render('user/user-website', {
-//           firstName: firstName,
-//           bio: loggedUser.bio,
-//         })
-//       } else {
-//         //alert the user the website has not been found
-//         alert('web page not found!')
-//       }
-//     }
-//   )
-// })
 // router.post('/delete-resume', () => {})
 
 //host/user/confirm-edits, handle resume edits
