@@ -82,8 +82,7 @@ $(document).ready(function () {
 
             //append html to #states_ through DOM
             console.log(statesOptionsHtml)
-
-            //! not appending? tries to append before this new html snippet is added
+            //! not appending? tries to append before the new html form snippet is fully added
             // $(`#state_` + eduCount).html(statesOptionsHtml)
             document.getElementById(
               `state_` + eduCount
