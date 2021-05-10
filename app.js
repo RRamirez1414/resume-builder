@@ -1,48 +1,49 @@
-const express = require("express");
-const ejs = require("ejs");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const path  = require('path');
-const User = require("./models/user");
-const homeRouter = require("./routes/homeRouter.js");
-const userRouter = require("./routes/userRouter.js");
-const loginRouter = require("./routes/loginRouter.js")
-const resumeInfo = require("./models/resumeInfo");
-const education = require("./models/education");
-const experience = require("./models/experience");
+const express = require('express')
+const ejs = require('ejs')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const path = require('path')
+const User = require('./models/user')
+const homeRouter = require('./routes/homeRouter.js')
+const userRouter = require('./routes/userRouter.js')
+const loginRouter = require('./routes/loginRouter.js')
+const queryRouter = require('./routes/queryRouter')
+const resumeInfo = require('./models/resumeInfo')
+const education = require('./models/education')
+const experience = require('./models/experience')
 
 //initialization and middleware
-const app = express();
+const app = express()
 
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-app.use(express.static(path.join(__dirname, "/public")));
-app.use(bodyParser.urlencoded({ extended: "true" }));
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.use(express.static(path.join(__dirname, '/public')))
+app.use(bodyParser.urlencoded({ extended: 'true' }))
 
 //mongoose database connection
 const uri =
-  "mongodb+srv://admin:ILOyL5Wzxs7UbdDk@webdev.2jqbv.mongodb.net/RESUME_DB?retryWrites=true&w=majority";
+  'mongodb+srv://admin:ILOyL5Wzxs7UbdDk@webdev.2jqbv.mongodb.net/RESUME_DB?retryWrites=true&w=majority'
 try {
   mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-  });
+  })
 } catch (error) {
-  handleError(error);
+  handleError(error)
 }
 
-const db = mongoose.connection;
-db.on("error", (error) => console.error(error));
-db.once("open", () => console.log("Connected to Mongoose"));
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to Mongoose'))
 
-app.use("/user", userRouter);
-app.use("/login", loginRouter);
+app.use('/user', userRouter)
+app.use('/login', loginRouter)
+app.use('/query', queryRouter)
 
-
-app.get("/", (req, res) => {
-  res.redirect("/login")
-});
+app.get('/', (req, res) => {
+  res.redirect('/login')
+})
 //create test users
 // const NewUser = new User({
 //     firstName: "Hecmar",
@@ -106,5 +107,5 @@ app.get("/", (req, res) => {
 // NewExperience.save();
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Server started on port");
-});
+  console.log('Server started on port')
+})
