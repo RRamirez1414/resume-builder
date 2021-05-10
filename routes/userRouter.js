@@ -4,14 +4,10 @@ const User = require('../models/user')
 const ResumeInfo = require('../models/resumeInfo')
 const States = require('../models/states')
 const Months = require('../models/months')
-<<<<<<< HEAD
-const Education = require('../models/education')
-const Experience = require('../models/experience')
-=======
 const Educations = require('../models/education')
 const Experiences = require('../models/experience')
->>>>>>> editResume
 
+//fields get filled based on userModel
 let loggedUser = {}
 
 //host/user/:username
@@ -64,41 +60,65 @@ router.get('/:username/view-list/:resumeid', async (req, res) => {
     educationList: educationList,
     experienceList: experienceList
   }) 
-  res.sendFile('../public/scripts/injection-scripts/injection-form.js')
 })
 
-//generated website end point
-router.get('/page/:username', (req, res) => {
-  const username = req.params.username
-  User.findOne(
-    {
-      /** find user by username from route
-       * later, do another get request to handle multiple websites of the same user
-       * something like /:username/:website-title
-       */
-      username: loggedUser.username,
-    },
-    (err, foundUser) => {
-      if (!err) {
-        firstName = foundUser.firstName
-        //render the user's website through ejs
-        res.render('user/user-website', {
-          firstName: firstName,
-          bio: loggedUser.bio,
-        })
-      } else {
-        //alert the user the website has not been found
-        alert('web page not found!')
-      }
-    }
-  )
+//host/user/:username/view-website-list/
+router.get('/:username/view-website-list', async (req, res) => {
+  let websiteList = await ResumeInfo.find({ user: loggedUser._id })
+  res.render('home/viewWebsiteList', { websiteList: websiteList })
 })
+
+router.get('/:username/view-website-list/:resumeid', async (req, res) => {
+  let resumeId = req.params.resumeid
+  
+  //single resume comes back
+  let websiteInfo = await ResumeInfo.findOne({
+    user: loggedUser._id,
+    _id: resumeId,
+  })
+
+  console.log(websiteInfo);
+
+  res.render('user/user-website', {
+    userfn: loggedUser.firstName,
+    skills: websiteInfo.skills,
+    profSum: websiteInfo.profSum
+  })
+})
+
+// //generated website end point
+// router.get('/page/:username', (req, res) => {
+//   const username = req.params.username
+//   User.findOne(
+//     {
+//       /** find user by username from route
+//        * later, do another get request to handle multiple websites of the same user
+//        * something like /:username/:website-title
+//        */
+//       username: loggedUser.username,
+//     },
+//     (err, foundUser) => {
+//       if (!err) {
+//         firstName = foundUser.firstName
+//         //render the user's website through ejs
+//         res.render('user/user-website', {
+//           firstName: firstName,
+//           bio: loggedUser.bio,
+//         })
+//       } else {
+//         //alert the user the website has not been found
+//         alert('web page not found!')
+//       }
+//     }
+//   )
+// })
 // router.post('/delete-resume', () => {})
 
 //host/user/confirm-edits, handle resume edits
-router.post('/confirm-edits', (req, res) => {
-  //gather form values and change accordingly in resumeInfo db, redirect to list
-  console.log(req.body)
+router.post('/confirm-edits', async (req, res) => {
+  const resumeID = await saveResumeInfo(req.body);
+  saveEducationInfo(req.body, resumeID);
+  saveExperienceInfo(req.body, resumeID);
   res.redirect(`${loggedUser.username}/view-list`)
 })
 
@@ -110,21 +130,8 @@ router.post('/save-resume', async (req, res) => {
   res.send("save complete");
 });
 
-router.post('/create-website', (req, res) => {
-  res.send(req.body);
-  //RR:
-  //change route to create-website, update
-  //handle form data from url req body, create and to resumeInfo DB
-  //don't store to logged user
-  loggedUser.bio = req.body.personalBio
-
-  //? app claims cannot read property of first name on database of null but still loads the document anyway?
-  res.redirect('/user/page/' + loggedUser.username)
-})
-
 async function saveExperienceInfo(reqBody, resumeID){
   const info = reqBody;
-  // console.log(reqBody);
   //logic checks if any experience was passed and if not does not create in database
   if(info.expName.length != null && info.expName.length > 1 && info.expName.length != 0){
     info.expName.forEach(async (exp, idx, array) => {
@@ -221,6 +228,7 @@ async function saveEducationInfo(reqBody, resumeID){
 
 async function saveResumeInfo(reqBody){
   const info = reqBody;
+  console.log(info);
   const userID = await User.findOne({username: info.username.trim()});
   const resumeInfo = new ResumeInfo({
     user: userID['_id'],
