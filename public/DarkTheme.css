@@ -17,6 +17,21 @@
     color: white;
 }
 
+.list-horizontal li {
+	display:inline-block;
+}
+
+.list-horizontal li:first-child:before {
+	content: '';
+}
+
+.list-horizontal li:before {
+	content: '\00a0\2022\00a0\00a0';
+	color:#999;
+	color:white;
+	font-size:11px;
+}
+
 body {
     color: #BFBFBF;
     background-image: url("/DarkBackground.png");

@@ -8,10 +8,38 @@
       <input type="text" name="userID" hidden value="<%= username %>">
         <div class="row">
             <!--classes such as form-control are styles from bootstrap-->
-            <div class="col-12 mb-3">
+            <div class="col-6 mb-3">
                 <label for="siteTitle">Website Title:</label>
                 <input class="form-control input-lg input-style" type="text" name="siteTitle" id="siteTitle"
                     placeholder="title..." value=<%=resume.siteTitle %> required />
+            </div>
+            <div class="col-6 mb-3">
+              <label for="theme">Site Theme:</label>
+              <select name="theme" id="theme" class="form-control input-style">
+                <% if (resume.theme == 'dark') { %>
+                  <option value="" disabled>Theme</option>
+                  <option value="default">Default</option>
+                  <option value="nmsu">NMSU</option>
+                  <option value="dark" selected>Dark</option>
+                <% } else if(resume.theme == 'nmsu') { %>
+                  <option value="" disabled>Theme</option>
+                  <option value="default">Default</option>
+                  <option value="nmsu" selected>NMSU</option>
+                  <option value="dark">Dark</option>
+                <% } else if (resume.theme == 'default') { %> 
+                  <option value="" disabled>Theme</option>
+                  <option value="default" selected>Default</option>
+                  <option value="nmsu">NMSU</option>
+                  <option value="dark">Dark</option>
+                <% } else { %> 
+                <option value="" selected disabled>Theme</option>
+                <option value="default">Default</option>
+                <option value="nmsu">NMSU</option>
+                <option value="dark" selected>Dark</option>
+                <% } %> 
+                
+              </select>
+      
             </div>
             <div class="col-6 mb-3">
                 <label for="address">Address: </label>

@@ -17,6 +17,21 @@
     color: rgb(140,11,66);
 }
 
+.list-horizontal li {
+	display:inline-block;
+}
+
+.list-horizontal li:first-child:before {
+	content: '';
+}
+
+.list-horizontal li:before {
+	content: '\00a0\2022\00a0\00a0';
+	color:#999;
+	color:white;
+	font-size:11px;
+}
+
 body {
     color: rgb(109,110,113);
     background-image: url("/NMSUBackground.png");
