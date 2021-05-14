@@ -1,5 +1,5 @@
 .section-design {
-    background-color: rgba(200,200,200, 0.9);
+    background-color: rgba(51,51,51, 0.9);
     padding: 10px;
     border-bottom: 5px solid rgba(100, 100, 100, 0.4);
     border-right: 5px solid rgba(100, 100, 100, 0.4);
@@ -7,14 +7,14 @@
 }
 
 .header-box {
-    background-color: rgb(140,11,66);
-    color: rgb(167,186,190);
-    border-bottom: 3px solid rgb(207,199,189);
-    border-right: 3px solid rgb(207,199,189);
+    background-color: #7395AE;
+    color: #5D5C61;
+    border-bottom: 3px solid #7395AE;
+    border-right: 3px solid #7395AE;
 }
 
 .headers {
-    color: rgb(140,11,66);
+    color: #B1A296;
 }
 
 .list-horizontal li {
@@ -33,10 +33,6 @@
 }
 
 body {
-    color: rgb(109,110,113);
-    background-image: url("/NMSUBackground.png");
-
+    color: #7395AE;
+    background-image: url("/ElementsBackground.png");
 } 
-
-
-

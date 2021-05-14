@@ -1,7 +1,21 @@
-<%- include("../partials/header.ejs") %>
+<%- include('../partials/headerPostLogin.ejs', {username: username}) %>
 
-<h1>Website List</h1>
-<p>Websites are listed for each resume</p>
-<% websiteList.forEach(resume => { %>
-<h3><%= resume.siteTitle %><a href="view-website-list/<%= resume._id %>">View</a></h3>
+<div class="interface-design w-50 mr-auto ml-auto mt-5">
+  <div class="mr-auto text-center mb-0"><h1>Website List</h1></div>
+  <div class="mr-auto text-center mb-2 mt-0">
+    <p>Websites are listed for each resume</p>
+  </div>
+  <hr class="sep mb-5" />
+  <% websiteList.forEach(resume => { %>
+  <div class="w-50 justify-center text-center ml-auto mr-auto">
+    <div class=""><h3><%= resume.siteTitle %></h3></div>
+    <div class="">
+      <a href="view-website-list/<%= resume._id %>"
+        ><button class="btn btn-dark w-25">View</button></a
+      >
+    </div>
+    <hr class="sep mb-2"
+  </div>
+</div>
+
 <% }); %> <%- include("../partials/footer.ejs") %>
