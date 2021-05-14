@@ -43,7 +43,10 @@ router.get('/:username/new-form', async (req, res) => {
 //host/user/:username/view-list
 router.get('/:username/view-list', async (req, res) => {
   let resumeList = await ResumeInfo.find({ user: loggedUser._id })
-  res.render('home/viewResumeList', { resumeList: resumeList })
+  res.render('home/viewResumeList', {
+    username: loggedUser.username,
+    resumeList: resumeList,
+  })
 })
 
 //host/user/:username/view-list/:resumeid
@@ -63,7 +66,8 @@ router.get('/:username/view-list/:resumeid', async (req, res) => {
   let skills = resume[0]['skills'].split(',')
 
   res.render('user/edit-resume-form', {
-    username: loggedUser._id,
+    username: loggedUser.username,
+    userid: loggedUser._id,
     resume: resume[0],
     skills: skills,
     states: states,
@@ -76,7 +80,10 @@ router.get('/:username/view-list/:resumeid', async (req, res) => {
 //host/user/:username/view-website-list/
 router.get('/:username/view-website-list', async (req, res) => {
   let websiteList = await ResumeInfo.find({ user: loggedUser._id })
-  res.render('home/viewWebsiteList', { websiteList: websiteList })
+  res.render('home/viewWebsiteList', {
+    username: loggedUser.username,
+    websiteList: websiteList,
+  })
 })
 
 router.get('/:username/view-website-list/:resumeid', async (req, res) => {
@@ -121,7 +128,7 @@ router.get('/:username/view-website-list/:resumeid', async (req, res) => {
 })
 
 //handle deleting a single resume
-//host/user/delete-resume/:resumeid
+//host/user/:username/view-list/delete-resume/:resumeid
 router.post(
   '/:username/view-list/delete-resume/:resumeid',
   async (req, res) => {

@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerPostLogin.ejs', {username: username}) %>
 
 <div class="container-fluid mt-5 w-50 interface-design">
   <div>
@@ -8,16 +8,26 @@
     <hr class="sep" />
     <div class="button-container justify-content-center">
       <div class="d-flex justify-content-center my-5 w-100 h-25">
-        <a href="<%= username %>/new-form" class="w-50 p-3 h-100"><button class="btn btn-dark w-100 h-100">New Resume</button></a>
+        <a href="<%= username %>/new-form" class="w-50 p-3 h-100"
+          ><button class="btn btn-dark w-100 h-100">New Resume</button></a
+        >
       </div>
       <div class="h-25">
-          <a href="<%= username %>/view-list"><button class="btn btn-dark w-25 h-100">Edit Resumes</button></a>
+        <a href="<%= username %>/view-list"
+          ><button class="btn btn-dark w-25 h-100">Edit Resumes</button></a
+        >
       </div>
       <div class="mt-1 h-25">
-            <a href="<%= username %>/view-website-list"><button class="btn btn-dark w-25 h-100">View Websites</button></a>  
+        <a href="<%= username %>/view-website-list"
+          ><button class="btn btn-dark w-25 h-100">View Websites</button></a
+        >
       </div>
       <div class="mt-1 h-25">
-            <a href="<%= username %>/sample"><button class="btn btn-dark w-25 h-100">View Web Site Sample</button></a>
+        <a href="<%= username %>/sample"
+          ><button class="btn btn-dark w-25 h-100">
+            View Web Site Sample
+          </button></a
+        >
       </div>
     </div>
   </div>

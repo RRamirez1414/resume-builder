@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerPostLogin.ejs', {username: username}) %>
 
 <div class="flex-column mt-5 interface-design w-50 ml-auto mr-auto">
   <div class="d-flex justify-content-center"><h1 class="headers user">Resume Form Page</h1></div>
@@ -23,7 +23,6 @@
         />
       </div>
       <div class="col-6 mb-3">
-<<<<<<< Updated upstream
         <label for="theme">Site Theme:</label>
         <select name="theme" id="theme" class="form-control input-style">
           <option value="" selected disabled>Theme</option>
@@ -35,9 +34,6 @@
       </div>
       <div class="col-6 mb-3">
         <label for="address">Address: </label>
-=======
-        <label for="address">Address:</label>
->>>>>>> Stashed changes
         <input class="form-control input-lg input-style" type="text" name="address" id="address" placeholder="address..">
       </div>
 

@@ -1,11 +1,11 @@
-<%- include("../partials/header.ejs") %>
+<%- include('../partials/headerPostLogin.ejs', {username: username}) %>
 <h2>Edit Resume - <%= resume.siteTitle %>
 </h2>
 
 <div class="container-fluid mt-3 w-75 interface-design p-4">
     <form action="/user/confirm-edits" method="POST">
       <input type="text" name="resumeID" hidden value="<%= resume._id %>">
-      <input type="text" name="userID" hidden value="<%= username %>">
+      <input type="text" name="userID" hidden value="<%= userid %>">
         <div class="row">
             <!--classes such as form-control are styles from bootstrap-->
             <div class="col-6 mb-3">
