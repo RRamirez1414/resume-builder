@@ -4,6 +4,7 @@
 var states
 var months
 
+//fetch states with custom api
 $.ajax({
   url: '/fetch/get-states',
   success: function (result) {
@@ -12,6 +13,7 @@ $.ajax({
   },
 })
 
+//fetch months with custom api
 $.ajax({
   url: '/fetch/get-months',
   success: function (result) {
@@ -81,7 +83,7 @@ $(document).ready(function () {
         </div>
       `
     )
-    //render html from ejs and store in a variable
+    //render html from ejs snippet and store in a variable
     var statesOptionsHtml = ejs.render(
       `<% states.forEach(state => { %>
           <option value="<%= state.stateCode %> "><%= state.stateDesc %> </option>
