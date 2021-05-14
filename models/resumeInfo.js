@@ -44,6 +44,9 @@ const resumeInfoSchema = new mongoose.Schema({
     profSum: {
         type: String
     },
+    theme: {
+        type: String
+    },
     skills: { //skills will be a comma separated list that will parsed on the webpage to be a list
         type: String
     }

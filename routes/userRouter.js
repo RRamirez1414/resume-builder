@@ -6,6 +6,7 @@ const States = require('../models/states')
 const Months = require('../models/months')
 const Educations = require('../models/education')
 const Experiences = require('../models/experience')
+const { exists } = require('../models/user')
 
 //fields get filled based on userModel
 let loggedUser = {}
@@ -75,20 +76,43 @@ router.get('/:username/view-website-list', async (req, res) => {
 })
 
 router.get('/:username/view-website-list/:resumeid', async (req, res) => {
-  let resumeId = req.params.resumeid
-  
+  let resumeId = req.params.resumeid;
+  let eduInfo;
+  let expInfo;
+
   //single resume comes back
-  let websiteInfo = await ResumeInfo.findOne({
+  let resumeInfo = await ResumeInfo.findOne({
     user: loggedUser._id,
     _id: resumeId,
-  })
-
-  console.log(websiteInfo);
+  });
+  let user = await User.findOne({
+    _id: loggedUser._id,
+  });
+  try {
+    eduInfo = await Educations.find({resumeInfo: resumeId});
+  } catch (error) {
+    console.log("Error getting Education or 0 Education Found");
+    console.log(error);
+  }
+  try {
+    expInfo = await Experiences.find({resumeInfo: resumeId});
+  } catch (error) {
+    console.log("Error getting Experiences or 0 Experiences Found");
+    console.log(error);
+  }
+  let skills = resumeInfo.skills.split(',')
+  console.log(user);
+  console.log(resumeInfo);
+  console.log(eduInfo);
+  console.log(expInfo);
+  console.log(skills);
 
   res.render('user/user-website', {
-    userfn: loggedUser.firstName,
-    skills: websiteInfo.skills,
-    profSum: websiteInfo.profSum
+    user: user,
+    resumeInfo: resumeInfo,
+    eduInfo: eduInfo,
+    expInfo: expInfo,
+    skills: skills
   })
 })
 
@@ -109,8 +133,9 @@ router.post('/save-resume', async (req, res) => {
   const resumeID = await saveResumeInfo(req.body);
   saveEducationInfo(req.body, resumeID);
   saveExperienceInfo(req.body, resumeID);
+  
   res.redirect(`/user/${req.body.username}/view-list/${resumeID}`)
-  res.send("save complete");
+  // res.send("save complete");
 });
 
 async function updateResumeInfo(reqBody, resumeID){
@@ -130,7 +155,8 @@ async function updateResumeInfo(reqBody, resumeID){
     resumeInfo.email1 = info.email1;
     resumeInfo.email2 = info.email2;
     resumeInfo.profSum = info.profSum;
-    if(info.Skills != null && info.Skills.length > 1 && info.Skills.length != 0){
+    resumeInfo.theme = info.theme;
+    if(typeof info.Skills != "undefined" && info.Skills != null && Array.isArray(info.Skills) == true){
       resumeInfo.skills = "";
       info.Skills.forEach((skill, idx, array) => {
         if(idx === array.length - 1){
@@ -139,7 +165,7 @@ async function updateResumeInfo(reqBody, resumeID){
           resumeInfo.skills += skill + ",";
         }
       });
-    } else if(info.Skills != null && info.Skills.length == 1){
+    } else if(typeof info.Skills != "undefined" && info.Skills != null && Array.isArray(info.Skills) == false){
       resumeInfo.skills = info.Skills;
     }
     resumeInfo.save();
@@ -152,10 +178,11 @@ async function updateResumeInfo(reqBody, resumeID){
 
 async function saveExperienceInfo(reqBody, resumeID){
   const info = reqBody;
+  console.log(Array.isArray(info.expName));
   //logic checks if any experience was passed and if not does not create in database
-  if(info.expName.length != null && info.expName.length > 1 && info.expName.length != 0){
+  if(typeof info.expName != "undefined" && Array.isArray(info.expName) == true && info.expName.length != null && info.expName.length > 1 && info.expName.length != 0){
     info.expName.forEach(async (exp, idx, array) => {
-      let experience = new Experience({
+      let experience = new Experiences({
         resumeInfo: resumeID, 
         expName: exp,
         deptName: "",
@@ -177,8 +204,8 @@ async function saveExperienceInfo(reqBody, resumeID){
       }
       // console.log(experience);
     });
-  } else if(info.expName.length != null && info.expName.length == 1){
-    let experience = new Experience({
+  } else if(typeof info.expName != "undefined" && Array.isArray(info.expName) == false){
+    let experience = new Experiences({
       resumeInfo: resumeID, 
       expName: info.expName,
       deptName: "",
@@ -194,6 +221,7 @@ async function saveExperienceInfo(reqBody, resumeID){
     });
     try {
       const NewExperience = await experience.save();
+      console.log(experience)
     } catch (error) {
       console.log("error saving experience ")
       console.log(error);
@@ -205,10 +233,10 @@ async function saveExperienceInfo(reqBody, resumeID){
 
 async function saveEducationInfo(reqBody, resumeID){
   const info = reqBody;
-  // console.log(reqBody);
-  if(info.institution.length != null && info.institution.length > 1 && info.institution.length != 0){
+  console.log(Array.isArray(info.institution));
+  if(typeof info.institution != "undefined" && Array.isArray(info.institution) == true && info.institution.length != null && info.institution.length > 1 && info.institution.length != 0){
     info.institution.forEach(async (inst, idx, array) => {
-      let education = new Education({
+      let education = new Educations({
         resumeInfo: resumeID, 
         institution: inst,
         achieved: info.achieved[idx],
@@ -225,8 +253,8 @@ async function saveEducationInfo(reqBody, resumeID){
         console.log(error);
       }
     });
-  } else if(info.institution.length != null && info.institution.length == 1){
-      let education = new Education({
+  } else if(typeof info.institution != "undefined" && Array.isArray(info.institution) == false){
+      let education = new Educations({
         resumeInfo: resumeID, 
         institution: info.institution,
         achieved: info.achieved,
@@ -238,6 +266,7 @@ async function saveEducationInfo(reqBody, resumeID){
       });
       try {
         const newEducation = await education.save();
+        console.log(education);
       } catch (error) {
         console.log("error saving education ")
         console.log(error);
@@ -263,17 +292,20 @@ async function saveResumeInfo(reqBody){
     email1: info.email1,
     email2: info.email2,
     profSum: info.profSum,
+    theme: info.theme,
     skills: ""
   });
-  if(info.Skills != null && info.Skills.length > 1 && info.Skills.length != 0){
+  if(typeof info.Skills != "undefined" && Array.isArray(info.Skills) == true && info.Skills != null && info.Skills.length > 1 && info.Skills.length != 0){
     info.Skills.forEach((skill, idx, array) => {
-      if(idx === array.length - 1){
+      if(idx === array.length - 1 && skill != ''){
         resumeInfo.skills += skill;
       } else{
-        resumeInfo.skills += skill + ",";
+        if(skill != ''){
+          resumeInfo.skills += skill + ",";
+        }
       }
     });
-  } else if(info.Skills != null && info.Skills.length == 1){
+  } else if(typeof info.Skills != "undefined" && Array.isArray(info.Skills) == false){
     resumeInfo.skills = info.Skills;
   }
   

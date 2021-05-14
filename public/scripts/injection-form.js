@@ -62,8 +62,8 @@ $(document).ready(function () {
         eduCount +
         `" class="form-control input-style input-lg">
             <option value="" disabled selected>Select One</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
           </select>
         </div>
         <div class="col-6 mb-3">

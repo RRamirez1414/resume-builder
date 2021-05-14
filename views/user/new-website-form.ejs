@@ -11,7 +11,7 @@
     <input type="text" hidden name="username" id="username" value="<%= username %>">
     <div class="row">
       <!--classes such as form-control are styles from bootstrap-->
-      <div class="col-12 mb-3">
+      <div class="col-6 mb-3">
         <label for="siteTitle">Website Title:</label>
         <input
           class="form-control input-lg input-style"
@@ -21,6 +21,16 @@
           placeholder="title..."
           required
         />
+      </div>
+      <div class="col-6 mb-3">
+        <label for="theme">Site Theme:</label>
+        <select name="theme" id="theme" class="form-control input-style">
+          <option value="" selected disabled>Theme</option>
+          <option value="default">Default</option>
+          <option value="nmsu">NMSU</option>
+          <option value="dark">Dark</option>
+        </select>
+
       </div>
       <div class="col-6 mb-3">
         <label for="address">Address: </label>
@@ -95,7 +105,7 @@
       <div class="col-12 mb-3">
         <label for="Skills">Skills</label>
         <select name="Skills" id="skills" multiple="multiple" class="form-control input-style input-sm">
-          <option value="" selected disabled>Add Skills...</option>
+          <option value="" selected readonly>Add Skills...</option>
         </select>
       </div>
       <div class="col-12 mb-3">
