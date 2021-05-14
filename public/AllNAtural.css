@@ -1,0 +1,38 @@
+.section-design {
+    background-color: rgba(51,51,51, 0.9);
+    padding: 10px;
+    border-bottom: 5px solid rgba(100, 100, 100, 0.4);
+    border-right: 5px solid rgba(100, 100, 100, 0.4);
+    border-radius: 5px;
+}
+
+.header-box {
+    background-color: #008878;
+    color: #D3E3FC;
+    border-bottom: 3px solid #D3E3FC;
+    border-right: 3px solid #D3E3FC;
+}
+
+.headers {
+    color: #FFCCBC;
+}
+
+.list-horizontal li {
+	display:inline-block;
+}
+
+.list-horizontal li:first-child:before {
+	content: '';
+}
+
+.list-horizontal li:before {
+	content: '\00a0\2022\00a0\00a0';
+	color:#999;
+	color:white;
+	font-size:11px;
+}
+
+body {
+    color: #D3E3FC;
+    background-image: url("/ALLNaturalBackground.png");
+} 
